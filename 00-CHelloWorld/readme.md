@@ -90,18 +90,15 @@ puede cambiar el email público en GitHub.
 
 ### 3.6. Productos
 
-`
-IAristia // Usuario GitHub
-  
-  -- SSL // Repositorio público para la materia
-  
-   -- readme.md // Archivo front page del usuario
-   -- 00-CHelloWorld // Carpeta el trabajo
- 
-   -- readme.md // Archivo front page del trabajo
-   -- hello.c // Archivo fuente del programa
-   -- output.txt // Archivo con la salida del programa
- `
+```
+IAristia                    // Usuario GitHub
+  |-- SSL                   // Repositorio público para la materia
+      |-- readme.md         // Archivo front page del usuario
+      |-- 00-CHelloWorld    // Carpeta el trabajo
+           |-- readme.md    // Archivo front page del trabajo
+           |-- hello.c      // Archivo fuente del programa
+           |-- output.txt   // Archivo con la salida del programa
+ ```
  
  ### 3.7. Referencia
 
