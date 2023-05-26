@@ -49,7 +49,53 @@ El único cambio es la adición de 4 líneas de linemarkes.
   
   
 ## 2. Compilación
-  
+a. Creación de hello3.s
+
+gcc -S hello3.c
+
+``` 
+hello3.c: In function 'main':
+hello3.c:4:2: warning: implicit declaration of function 'prontf' [-Wimplicit-function-declaration]
+  prontf("La respuesta es %d\n");
+  ^~~~~~
+hello3.c:4:2: error: expected declaration or statement at end of input
+```
+
+Este error es de tipo sintáctico, resultante de no haber declarado el final del código main, al no haber escrito la llave de cierre.
+
+b. Creación de hello4.c y hello4.s
+
+gcc -S hello4.c 
+```
+hello4.c: In function 'main':
+hello4.c:4:2: warning: implicit declaration of function 'prontf' [-Wimplicit-function-declaration]
+  prontf("La respuesta es %d\n");}
+  ^~~~~~
+```
+
+c. hello4.s
+
+- Define la función main.
+- Reserva espacio en memoria para las variables a utilizar.
+- Crea la etiqueta LC0 y le asigna "La respuesta es %d\12\0".
+- Llama a la función main.
+- Guarda el valor 42 en el registro llamado 28(%esp).
+- Guarda el contenido de LC0 en el registro llamado (%esp).
+- Llama a la función prontf.
+- La función main retorna valor 0, se ejcutó correctamente.
+
+
+d. Creación hello4.o
+
+gcc -c hello4.c
+
+```
+hello4.c: In function 'main':
+hello4.c:4:2: warning: implicit declaration of function 'prontf' [-Wimplicit-function-declaration]
+  prontf("La respuesta es %d\n");}
+  ^~~~~~
+```
+
 ## 3. Vinculación
   
 ## 4. Corrección de Bug
