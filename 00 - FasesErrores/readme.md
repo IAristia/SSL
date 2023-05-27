@@ -97,6 +97,31 @@ hello4.c:4:2: warning: implicit declaration of function 'prontf' [-Wimplicit-fun
 ```
 
 ## 3. Vinculación
+
+a. gcc -o hello4 hello4.o
+
+```
+hello4.o:hello4.c:(.text+0x1e): undefined reference to `prontf'
+collect2.exe: error: ld returned 1 exit status
+```
+
+b. Creación hello5.c y creación hello5.exe
+
+gcc hello5.c -o hello5.exe
+
+c. Output de hello5.exe
+
+```
+La respuesta es 4200768
+```
+
+- ¿Por qué ahora vincula?
+
+Anteriormente se intentó vincular prontf sin éxito ya que no había sido declarada, en esta versión, al haber cambiado prontf por printf fue capaz de vincularla correctamente con la declaración existente.
+
+- ¿Por que tira basura y no 42?
+
+La funcion printf tira basura y no 42 porque al usar %d la función espera otro parámetro numérico (que se pueda formatear a decimal) el cual no estamos especificando, esto produce que la función tome por referencia lo que sea que esté contenido en memoria (basura) y lo imprime.
   
 ## 4. Corrección de Bug
  
