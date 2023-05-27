@@ -124,8 +124,20 @@ Anteriormente se intentó vincular prontf sin éxito ya que no había sido decla
 La funcion printf tira basura y no 42 porque al usar %d la función espera otro parámetro numérico (que se pueda formatear a decimal) el cual no estamos especificando, esto produce que la función tome por referencia lo que sea que esté contenido en memoria (basura) y lo imprime.
   
 ## 4. Corrección de Bug
- 
+
+a. Creación hello6.c y hello6.exe
+
+```
+gcc hello6.c -o hello6.exe
+
+hello6.exe 
+La respuesta es 42
+```
+_printf_ funciona correctamente ya que añadimos el parámetro faltante mencionado en el punto 3.c.
+
 ## 5. Remoción de prototipo
+
+
 
 ## 6. Compilación Separada: Contratos y Módulos
 
