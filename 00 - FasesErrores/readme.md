@@ -137,7 +137,35 @@ _printf_ funciona correctamente ya que añadimos el parámetro faltante menciona
 
 ## 5. Remoción de prototipo
 
+a. Creación de hello7.c
 
+b. 
+
+i. gcc hello7.c
+
+Arroja warning al momento de compilar
+
+```
+hello7.c: In function 'main':
+hello7.c:3:2: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  printf("La respuesta es %d\n", i);
+  ^~~~~~
+hello7.c:3:2: warning: incompatible implicit declaration of built-in function 'printf'
+hello7.c:3:2: note: include '<stdio.h>' or provide a declaration of 'printf'
+```
+
+ii. Un prototipo es la declaración de una función, se indica qué tipo de dato develve, el nombre de la función y que tipo de dato recibe.
+Se puede generar de dos maneras: explícitamente e implicitamente.
+
+iii. Implícitamente: No se escribe el prototipo en el código fuente, sino que la función se invoca directamente, en este caso el vinculador se encargá de buscar la definición (por defecto lo hará en la bibilioteca estándar).
+
+iv.
+
+v.
+
+vi.
+
+vii.
 
 ## 6. Compilación Separada: Contratos y Módulos
 
