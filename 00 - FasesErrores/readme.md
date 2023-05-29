@@ -82,7 +82,7 @@ c. hello4.s
 - Guarda el valor 42 en el registro llamado 28(%esp).
 - Guarda el contenido de LC0 en el registro llamado (%esp).
 - Llama a la función prontf.
-- La función main retorna valor 0, se ejcutó correctamente.
+- La función main retorna valor 0, se ejecutó correctamente.
 
 
 d. Creación hello4.o
@@ -159,7 +159,7 @@ Se puede generar de dos maneras: explícitamente e implicitamente.
 
 iii. Implícitamente: No se escribe el prototipo en el código fuente, sino que la función se invoca directamente, en este caso el vinculador se encargá de buscar la definición (por defecto lo hará en la bibilioteca estándar).
 
-iv. La especificación indica que las funciones deben estar declaradas, pero no indica el comportamiento en caso de no estar declaradas.
+iv. La especificación indica el comportamiento esperado para funciones declaradas, pero no indica el comportamiento en caso de no estar declaradas.
 
 v. En el caso de gcc, si no encuentra una declaración de una función, la busca en la librería estándar. En el caso de Clang, el compilador arroja un error.
 En el caso de Clang, a partir de la versión 15, arroja un error al no encontrar una declaración de la función (no soporta declaración implícita de funciones)
@@ -192,6 +192,7 @@ Compiler returned: 1
 
 Sin embargo, GCC permite compilar esto ya que su razón de ser es trabajar en Linux, y este depende de las declaraciones implícitas para su funcionamiento.
 Dejar de soportar estas declaraciones implícitas traería consigo la necesidad de hacer otros cambios mayores en el código fuente de Linux para que siga siendo compatible.
+Como dijimos antes, la especificación define el comportamiento esperado únicamente en funciones explícitas, por lo que esto no va en contra de la especificación.
 
 ## 6. Compilación Separada: Contratos y Módulos
 
@@ -214,7 +215,12 @@ c. La función prontf es un wrapper de la función printf que si bien en su decl
 Esto provoca que, al añadirle parámetros, la función siga arrojando exactamente el mismo resultado, pues esta simplemente no  usa los parámetros extras. Por otro lado, si eliminamos parámetros, la función utilizará como segundo parámetro lo que sea que este alojado en memoria, es decir, basura. 
 
 d.
-i.
-ii.
-iii.
-vi.
+i. Creación de studio.h
+
+ii. Creación de hello9.c
+
+iii. Creación de studio2.c
+
+iv.
+- Permite tener más control sobre la utilización e implementación de funciones. El cliente debe respetar los parámetros al invocar la función, y el proveedor debe implementarla de acuerdo con la declaración del contrato.
+- Es menos flexible, pero evita errores de tipado al implementar y al invocar funciones declaradas en el contrato, lo cual es una ventaja al reducir inconsistencias en el código.
