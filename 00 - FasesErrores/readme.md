@@ -224,3 +224,54 @@ iii. Creación de studio2.c
 iv.
 - Permite tener más control sobre la utilización e implementación de funciones. El cliente debe respetar los parámetros al invocar la función, y el proveedor debe implementarla de acuerdo con la declaración del contrato.
 - Es menos flexible, pero evita errores de tipado al implementar y al invocar funciones declaradas en el contrato, lo cual es una ventaja al reducir inconsistencias en el código.
+
+## Crédito extra
+
+Investigue sobre bibliotecas.
+
+¿Qué son?
+
+Las bibliotecas son archivos que contienen funciones y archivos de encabezado necesarios para trabajar con la entrada y salida de flujos, la administración de memoria, la manipulación de cadenas y tareas semejantes.
+
+¿Se pueden distribuir?
+
+Si, es posible distribuir bibliotecas, esto dependerá del autor de la biblioteca en sí y de sus intenciones.
+
+Por ejemplo, en la biblioteca stdio.h se puede leer a modo de comentario que se le da permiso a _cualquier persona_, sin costo, de obtener una copia del código, y de manipularlo sin restricciones de uso, copia, modificación, publicación, distribución, e incluso dándole la posibilidad de _vender_ copias del código.
+
+```
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software
+```
+
+¿Son portables?
+
+Si, son portables. Qué tan portable sea una biblioteca dependerá de la implementación de la misma, del compilador que se utilice y de las versiones de los sistemas operativos en los que se quiera utilizar.
+
+Por ejemplo, en este comentario extraído de la biblioteca ***stdio.h*** se recomienda evitar el uso de ciertas variaciones de printf añadidas por Windows, y se propone una alternativa que sugiere ser más portable a plataformas ajenas a Windows, y a su vez, ofrece una mejor compatiblidad con versiones anteriores de Windows.
+
+```
+/*
+ * In MSVCR80.DLL, (and its descendants), Microsoft introduced variants
+ * of the printf() functions, with names qualified by an underscore prefix
+ * and "_p" or "_p_l" suffixes; implemented in Microsoft's typically crass,
+ * non-standard, and non-portable fashion, these provide support for access
+ * to printf() arguments in random order, as was standardised by POSIX as a
+ * feature of the optional Extended Systems Interface (XSI) specification,
+ * and is now required for conformity with the POSIX.1-2008 base standard.
+ * Although these additional Microsoft functions were subsequently added
+ * to MSVCRT.DLL, from Windows-Vista onward, and they are prototyped here,
+ * MinGW applications are strenuously encouraged to avoid using them; a
+ * much better alternative is to "#define _XOPEN_SOURCE 700" before any
+ * system header is included, then use POSIX standard printf() functions
+ * instead; this is both portable to many non-Windows platforms, and it
+ * offers better compatibility with earlier Windows versions.
+ */
+```
+¿Cuáles son sus ventajas y desventajas?
+
+Desarrolle y utilice la biblioteca studio.
+
