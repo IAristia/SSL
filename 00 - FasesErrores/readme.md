@@ -166,7 +166,32 @@ En el caso de Clang, a partir de la versión 15, arroja un error al no encontrar
 
 vi. Las funciones "built-in" en C son funciones que están integradas directamente en el lenguaje (vienen en el compilador) y se proporcionan como parte de la biblioteca estándar de C.
 
-vii.
+vii. Al compilar hello7.c, GCC arroja warnings, no errores.
+
+```
+.\hello7.c: In function 'main':
+.\hello7.c:4:5: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+    4 |     printf("La respuesta es %d\n", i);
+      |     ^~~~~~
+.\hello7.c:4:5: warning: incompatible implicit declaration of built-in function 'printf'
+.\hello7.c:1:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+  +++ |+#include <stdio.h>
+    1 | int main(void)
+```
+Estos warnings nos advierten del uso de la declaración implícita de printf, que no debería soportarse de acuerdo con el estándar de C99.
+Al compilar con Clang (versión 15), el código arroja el siguiente error, en el cual se hace mención del estándar C99:
+
+```
+<source>:4:5: error: call to undeclared library function 'printf' with type 'int (const char *, ...)'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+    printf("La respuesta es %d\n", i);
+    ^
+<source>:4:5: note: include the header <stdio.h> or explicitly provide a declaration for 'printf'
+1 error generated.
+Compiler returned: 1
+```
+
+Sin embargo, GCC permite compilar esto ya que su razón de ser es trabajar en Linux, y este depende de las declaraciones implícitas para su funcionamiento.
+Dejar de soportar estas declaraciones implícitas traería consigo la necesidad de hacer otros cambios mayores en el código fuente de Linux para que siga siendo compatible.
 
 ## 6. Compilación Separada: Contratos y Módulos
 
