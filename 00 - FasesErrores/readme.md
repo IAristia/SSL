@@ -227,13 +227,13 @@ iv.
 
 ## Crédito extra
 
-Investigue sobre bibliotecas.
+### Investigue sobre bibliotecas.
 
-¿Qué son?
+- ¿Qué son?
 
 Las bibliotecas son archivos que contienen funciones y archivos de encabezado necesarios para trabajar con la entrada y salida de flujos, la administración de memoria, la manipulación de cadenas y tareas semejantes.
 
-¿Se pueden distribuir?
+- ¿Se pueden distribuir?
 
 Si, es posible distribuir bibliotecas, esto dependerá del autor de la biblioteca en sí y de sus intenciones.
 
@@ -247,7 +247,7 @@ Por ejemplo, en la biblioteca stdio.h se puede leer a modo de comentario que se 
  * and/or sell copies of the Software
 ```
 
-¿Son portables?
+- ¿Son portables?
 
 Si, son portables. Qué tan portable sea una biblioteca dependerá de la implementación de la misma, del compilador que se utilice y de las versiones de los sistemas operativos en los que se quiera utilizar.
 
@@ -271,7 +271,27 @@ Por ejemplo, en este comentario extraído de la biblioteca ***stdio.h*** se reco
  * offers better compatibility with earlier Windows versions.
  */
 ```
-¿Cuáles son sus ventajas y desventajas?
+- ¿Cuáles son sus ventajas y desventajas?
 
-Desarrolle y utilice la biblioteca studio.
+La principal ventaja de la utilización de bibliotecas es el ahorro de tiempo en la escitura de código, evita que tengamos que escribir las implementaciones de las funciones que vamos a utilizar, permitiéndonos desarrollar nuestro código sin la necesidad de enfocarnos en expresar las implementaciones.
 
+La principal desventaja radica en que, al utilizar bibliotecas de terceros, no tenemos un conocimiento certero de su contentido y funcionamiento, existiendo la posibilidad de que la biblioteca esté desarrollada incorrectamente y resulte en problemas de optimización y/o mantenimiento en un futuro.
+
+Otra desventaja es que, al utilizar una biblioteca, en la etapa de preprocesado, se incluyen todas las funciones que contiene dicha bilbioteca, y en algunos casos solamente necesitamos una cantidad mínima de funciones, lo que lleva a cuestionarnos si realmente es necesario incliur ***todas*** las funciones de la biblioteca si no estaremos haciendo uso de la gran mayoría de las mismas.
+
+- Desarrolle y utilice la biblioteca studio.
+
+La biblioteca studio contine definiciones y prototipos de funciones para la opreación de datos de tipo flujo de entrada estandar y flujo de salida estandar.
+
+```
+#include <stdio.h>
+int main() {
+  
+   printf("Hello, World!");
+   
+   return 0;
+}
+
+```
+
+En el clásico código helloworld se incluye la biblioteca stdio.h y se utiliza la función _printf_, incluida en la misma, para mostrar por pantalla la leyenda "Hello, World!".
