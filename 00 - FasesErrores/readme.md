@@ -212,3 +212,9 @@ La respuesta es 42
 ```
 c. La función prontf es un wrapper de la función printf que si bien en su declaración admite dos parámetros, esta le pasa un único parámetro a la función printf (el segundo).
 Esto provoca que, al añadirle parámetros, la función siga arrojando exactamente el mismo resultado, pues esta simplemente no  usa los parámetros extras. Por otro lado, si eliminamos parámetros, la función utilizará como segundo parámetro lo que sea que este alojado en memoria, es decir, basura. 
+
+d.
+i.
+ii.
+iii.
+vi.
