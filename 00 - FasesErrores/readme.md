@@ -170,4 +170,20 @@ vii.
 
 ## 6. Compilación Separada: Contratos y Módulos
 
-## 
+a. Creación de studio1.c y hello8.c.
+
+b. En gcc podemos añadirle mas argumentos al comando de compilación, de manera que el compilador utilizará varios archivos para generar el ejecutable.
+
+```
+gcc studio1.c hello8.c -o hello8
+```
+
+En este caso, el programa compila.
+
+```
+hello8.exe
+
+La respuesta es 42
+```
+c. La función prontf es un wrapper de la función printf que si bien en su declaración admite dos parámetros, esta le pasa un único parámetro a la función printf (el segundo).
+Esto provoca que, al añadirle parámetros, la función siga arrojando exactamente el mismo resultado, pues esta simplemente no  usa los parámetros extras. Por otro lado, si eliminamos parámetros, la función utilizará como segundo parámetro lo que sea que este alojado en memoria, es decir, basura. 
