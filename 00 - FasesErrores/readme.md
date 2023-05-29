@@ -159,11 +159,12 @@ Se puede generar de dos maneras: explícitamente e implicitamente.
 
 iii. Implícitamente: No se escribe el prototipo en el código fuente, sino que la función se invoca directamente, en este caso el vinculador se encargá de buscar la definición (por defecto lo hará en la bibilioteca estándar).
 
-iv.
+iv. La especificación indica que las funciones deben estar declaradas, pero no indica el comportamiento en caso de no estar declaradas.
 
-v.
+v. En el caso de gcc, si no encuentra una declaración de una función, la busca en la librería estándar. En el caso de Clang, el compilador arroja un error.
+En el caso de Clang, a partir de la versión 15, arroja un error al no encontrar una declaración de la función (no soporta declaración implícita de funciones)
 
-vi.
+vi. Las funciones "built-in" en C son funciones que están integradas directamente en el lenguaje (vienen en el compilador) y se proporcionan como parte de la biblioteca estándar de C.
 
 vii.
 
