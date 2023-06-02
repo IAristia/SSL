@@ -119,9 +119,9 @@ La respuesta es 4200768
 
 Anteriormente se intentó vincular prontf sin éxito ya que no había sido declarada, en esta versión, al haber cambiado prontf por printf fue capaz de vincularla correctamente con la declaración existente.
 
-- ¿Por que tira basura y no 42?
+- ¿Por que devuelve basura y no 42?
 
-La funcion printf tira basura y no 42 porque al usar %d la función espera otro parámetro numérico (que se pueda formatear a decimal) el cual no estamos especificando, esto produce que la función tome por referencia lo que sea que esté contenido en memoria (basura) y lo imprime.
+Printf devuelve basura y no 42 porque al usar %d, la función espera otro parámetro numérico (que se pueda formatear a decimal) el cual no estamos especificando, esto produce que la función tome por referencia lo que sea que esté contenido en la dirección de memoria y lo imprime.
   
 ## 4. Corrección de Bug
 
@@ -157,14 +157,14 @@ hello7.c:3:2: note: include '<stdio.h>' or provide a declaration of 'printf'
 ii. Un prototipo es la declaración de una función, se indica qué tipo de dato develve, el nombre de la función y que tipo de dato recibe.
 Se puede generar de dos maneras: explícitamente e implicitamente.
 
-iii. Implícitamente: No se escribe el prototipo en el código fuente, sino que la función se invoca directamente, en este caso el vinculador se encargá de buscar la definición (por defecto lo hará en la bibilioteca estándar).
+iii. Implícitamente: No se escribe el prototipo en el código fuente, sino que la función se invoca directamente, en este caso el vinculador se encargá de buscar el código objeto de las funciones invocadas (por defecto lo hará en la bibilioteca estándar).
 
 iv. La especificación indica el comportamiento esperado para funciones declaradas, pero no indica el comportamiento en caso de no estar declaradas.
 
 v. En el caso de gcc, si no encuentra una declaración de una función, la busca en la librería estándar. En el caso de Clang, el compilador arroja un error.
 En el caso de Clang, a partir de la versión 15, arroja un error al no encontrar una declaración de la función (no soporta declaración implícita de funciones)
 
-vi. Las funciones "built-in" en C son funciones que están integradas directamente en el lenguaje (vienen en el compilador) y se proporcionan como parte de la biblioteca estándar de C.
+vi. Las funciones "built-in" en C son funciones de la biblioteca std, es una decisión de la implementación del lenguaje de programación tratar a las funciones standar como _*built-in*_, es decir, funciones que están incorporadas en el compilador.
 
 vii. Al compilar hello7.c, GCC arroja warnings, no errores.
 
@@ -211,8 +211,10 @@ hello8.exe
 
 La respuesta es 42
 ```
-c. La función prontf es un wrapper de la función printf que si bien en su declaración admite dos parámetros, esta le pasa un único parámetro a la función printf (el segundo).
-Esto provoca que, al añadirle parámetros, la función siga arrojando exactamente el mismo resultado, pues esta simplemente no  usa los parámetros extras. Por otro lado, si eliminamos parámetros, la función utilizará como segundo parámetro lo que sea que este alojado en memoria, es decir, basura. 
+c. La función prontf es un wrapper de la función printf, si bien en su declaración admite dos parámetros, esta le pasa un único parámetro a la función printf (el segundo).
+Esto provoca que, al añadirle parámetros, la función siga arrojando exactamente el mismo resultado, pues esta simplemente no usa los parámetros extras. Por otro lado, si eliminamos parámetros, la función utilizará como segundo parámetro lo que sea que este alojado en memoria. 
+
+Esto lleva a que la función tenga un _comportamiento indefinido_, lo cual es conveniente evitar para no encontrarnos con errores al invocar la función y hacer que nuestro código sea más consistente.
 
 d.
 i. Creación de studio.h
