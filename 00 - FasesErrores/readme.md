@@ -139,7 +139,7 @@ _printf_ funciona correctamente ya que añadimos el parámetro faltante menciona
 
 a. Creación de hello7.c
 
-b. 
+b. Para llevar a cabo este punto decidimos analizar el comportamiento de GCC en Windows, ya que la mayoría de los intregrantes del grupo trabaja con GCC en Windows.
 
 i. gcc hello7.c
 
@@ -166,7 +166,7 @@ En el caso de Clang, a partir de la versión 15, arroja un error al no encontrar
 
 vi. Las funciones "built-in" en C son funciones de la biblioteca std, es una decisión de la implementación del lenguaje de programación tratar a las funciones standar como _*built-in*_, es decir, funciones que están incorporadas en el compilador.
 
-vii. Al compilar hello7.c, GCC arroja warnings, no errores.
+vii. Al compilar hello7.c, GCC (Windows) arroja warnings, no errores.
 
 ```
 .\hello7.c: In function 'main':
@@ -190,7 +190,7 @@ Al compilar con Clang (versión 15), el código arroja el siguiente error, en el
 Compiler returned: 1
 ```
 
-Sin embargo, GCC permite compilar esto ya que su razón de ser es trabajar en Linux, y este depende de las declaraciones implícitas para su funcionamiento.
+Sin embargo, GCC en Windows, permite compilar esto ya que su razón de ser es trabajar en Linux, y este depende de las declaraciones implícitas para su funcionamiento.
 Dejar de soportar estas declaraciones implícitas traería consigo la necesidad de hacer otros cambios mayores en el código fuente de Linux para que siga siendo compatible.
 Como dijimos antes, la especificación define el comportamiento esperado únicamente en funciones explícitas, por lo que esto no va en contra de la especificación.
 
