@@ -1,9 +1,9 @@
 # Árboles de expresión
 ## 1B: Dibujar el árbol de expresión para la inicialización de los contadores: nl = nw = nc = 0.
-![1B](1B.jpg)
+![1B](1B.png)
 
 ## 1C: Dibujar el árbol de expresión para la expresión de control del segundo if: c == ' ' || c == '\n' || c == '\t'.
-![1C](1C.jpg)
+![1C](1C.png)
 
 # Respuestas
 ## 3B: ¿Tiene alguna aplicación go to hoy en día? ¿Algún lenguaje moderno lo utiliza?
