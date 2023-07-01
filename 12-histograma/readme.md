@@ -8,6 +8,22 @@
 ## 2A: Máquina de estado
 ![2A](2A.png)
 
+## 2B: Formalización de la máquina de estado
+
+M = (Q, Σ, q<sub>0</sub>, T, F) donde:
+
+- Q = {IN, OUT}
+- Σ = caracteres pertenecientes a ASCII, con partición P = {{espaciador}, {no espaciador}}.
+- q<sub>0</sub> = OUT
+- F = {IN, OUT}
+- T = {OUT => no espaciador => IN, OUT => espaciador => OUT, IN => espaciador => OUT, IN => no espaciador => IN}
+- TT
+
+| T    | espaciador | no espaciador|
+|------|------------|--------------|
+| OUT± | OUT        | IN           |
+| IN+  | OUT        | IN           |
+
 # Respuestas
 ## 3B: ¿Tiene alguna aplicación go to hoy en día? ¿Algún lenguaje moderno lo utiliza?
 No, hoy en día no tiene ninguna aplicación usar goto, ya que este salto de instrucción no respeta ningún contexto, ni encapsulamiento ni protecciones de seguridad. Además, el código que usa goto es muy difícil de leer y de mantener. Estas sentencias pueden ser simplemente reemplazadas por ciclos y otros condicionales. Por lo tanto, no se recomienda usar goto en ningún lenguaje moderno, ni aunque esté soportado.
