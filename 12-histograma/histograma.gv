@@ -1,0 +1,15 @@
+digraph G {
+
+    graph  [bgcolor="white", fontname="Arial", fontsize=12]
+
+    node [shape = circle];
+    
+    I [label = "IN"];
+    O [label = "OUT"];
+    
+    I -> O [label = "espaciador"];
+    O -> I [label = "no espaciador \n ++nw"];
+    I -> I [label = "no espaciador"];
+    O -> O [label = "espaciador"];
+
+}
