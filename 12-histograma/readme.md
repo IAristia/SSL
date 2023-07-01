@@ -5,6 +5,9 @@
 ## 1C: Dibujar el árbol de expresión para la expresión de control del segundo if: c == ' ' || c == '\n' || c == '\t'.
 ![1C](1C.png)
 
+## 2A: Máquina de estado
+![2A](2A.png)
+
 # Respuestas
 ## 3B: ¿Tiene alguna aplicación go to hoy en día? ¿Algún lenguaje moderno lo utiliza?
 No, hoy en día no tiene ninguna aplicación usar goto, ya que este salto de instrucción no respeta ningún contexto, ni encapsulamiento ni protecciones de seguridad. Además, el código que usa goto es muy difícil de leer y de mantener. Estas sentencias pueden ser simplemente reemplazadas por ciclos y otros condicionales. Por lo tanto, no se recomienda usar goto en ningún lenguaje moderno, ni aunque esté soportado.
