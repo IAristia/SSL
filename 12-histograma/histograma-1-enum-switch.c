@@ -1,19 +1,10 @@
 #include <stdio.h>
+#include "graficador.h"
+#ifndef MAX_WORD_LENGTH
+#define MAX_WORD_LENGTH 10
+#endif
 
-void printArray(int a[])
-{
-    for (int i = 0; i < 11; i++)
-    {
-        printf("Cantidad de palabras de longitud %d:", i + 1);
-        for (int j = 0; j < a[i]; j++)
-        {
-            printf("*");
-        }
-        printf("\n");
-    }
-}
-
-int main(void)
+int withEnumSwitch(FILE* stream)
 {
     typedef enum
     {
@@ -23,10 +14,10 @@ int main(void)
 
     // Initial state
     int c, ncw; // ncw = numero de caracteres de la palabra
-    int arrayLengths[11] = {0};
+    int arrayLengths[MAX_WORD_LENGTH + 1] = {0};
     State s = Out;
     ncw = 0;
-    while ((c = getchar()) != EOF)
+    while ((c = getc(stream)) != EOF)
     {
 
         switch (s)
@@ -51,18 +42,18 @@ int main(void)
             case ' ':
             case '\t':
                 s = Out;
-                if (ncw > 10)
-                    arrayLengths[10]++;
+                if (ncw > MAX_WORD_LENGTH)
+                    arrayLengths[MAX_WORD_LENGTH]++;
                 else
                     arrayLengths[ncw]++;
                 break;
             case '\n':
                 s = Out;
-                if (ncw > 10)
-                    arrayLengths[10]++;
+                if (ncw > MAX_WORD_LENGTH)
+                    arrayLengths[MAX_WORD_LENGTH]++;
                 else
                     arrayLengths[ncw]++;
-                printArray(arrayLengths);
+                printArray(arrayLengths, MAX_WORD_LENGTH);
                 break;
             default:
                 ncw++;
@@ -71,4 +62,5 @@ int main(void)
             break;
         }
     }
+    printArray(arrayLengths, MAX_WORD_LENGTH);
 }
