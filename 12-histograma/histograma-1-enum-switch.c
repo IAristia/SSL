@@ -17,6 +17,9 @@ int withEnumSwitch(FILE* stream)
     int arrayLengths[MAX_WORD_LENGTH + 1] = {0};
     State s = Out;
     ncw = 0;
+    system("cls");
+    printf("Longitud máxima de palabra: %d\n", MAX_WORD_LENGTH);
+    printf("ingrese el texto a analizar (enter and Ctrl-Z and enter to exit):\n");
     while ((c = getc(stream)) != EOF)
     {
 
@@ -53,7 +56,6 @@ int withEnumSwitch(FILE* stream)
                     arrayLengths[MAX_WORD_LENGTH]++;
                 else
                     arrayLengths[ncw]++;
-                printArray(arrayLengths, MAX_WORD_LENGTH);
                 break;
             default:
                 ncw++;
@@ -63,4 +65,5 @@ int withEnumSwitch(FILE* stream)
         }
     }
     printArray(arrayLengths, MAX_WORD_LENGTH);
+    return 0;
 }

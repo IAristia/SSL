@@ -7,6 +7,9 @@
 void withGoTo(FILE* stream) {
     int c, len = 0;
     int arrayLengths[MAX_WORD_LENGTH + 1] = {0};
+	system("cls");
+    printf("Longitud máxima de palabra: %d\n", MAX_WORD_LENGTH);
+    printf("ingrese el texto a analizar (enter and Ctrl-Z and enter to exit):\n");
 	read:
     c = getc(stream);
 	if (c == EOF) goto end;
@@ -21,4 +24,6 @@ void withGoTo(FILE* stream) {
 	goto read;
 	end:
 	printArray(arrayLengths, MAX_WORD_LENGTH);
+	return;
+	
 }

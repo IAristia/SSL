@@ -6,4 +6,5 @@ void printArray(int a[], int maxWordLength) {
 		for (int j = 0; j < a[i]; j++) printf("*");
 		printf("\n");
 	}
+	return;
 }
