@@ -10,13 +10,13 @@
 
 ## 2B: Formalización de la máquina de estado
 
-M = (Q, Σ, q<sub>0</sub>, T, F) donde:
+M = (Q, Σ, q<sub>0</sub>, T, A) donde:
 
 - Q = {IN, OUT}
 - Σ = caracteres pertenecientes a ASCII, con partición P = {{espaciador}, {no espaciador}}.
 - q<sub>0</sub> = OUT
-- F = {IN, OUT}
 - T = {OUT => no espaciador => IN, OUT => espaciador => OUT, IN => espaciador => OUT, IN => no espaciador => IN}
+- A = {OUT => ++nw => IN}
 - TT
 
 | T    | espaciador | no espaciador|
