@@ -1,2 +1,6 @@
 *.exe
 .vscode/
+*.obj
+*.pdb
+*.ini
+*.suo
