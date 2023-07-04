@@ -16,7 +16,7 @@ M = (Q, Σ, q<sub>0</sub>, T, A) donde:
 - Σ = caracteres pertenecientes a ASCII, con partición P = {{espaciador}, {no espaciador}}.
 - q<sub>0</sub> = OUT
 - T = {OUT => no espaciador => IN, OUT => espaciador => OUT, IN => espaciador => OUT, IN => no espaciador => IN}
-- A = {OUT => ++nw => IN}
+- A = conjunto de acciones
 - TT
 
 | T    | espaciador | no espaciador|
