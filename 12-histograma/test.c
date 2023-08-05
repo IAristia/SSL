@@ -3,14 +3,16 @@
 #endif
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "histograma-1-enum-switch.c"
 #include "histograma-2-goto.c"
 #include "histograma-3-rec.c"
 #include "histograma-x.c"
 
-int main() {
+int main()
+{
 	printf("Longitud máxima de palabra: %d\n", MAX_WORD_LENGTH);
-	FILE* stream = fopen("test.txt", "r");
+	FILE *stream = fopen("test.txt", "r");
 	printf("Enum switch:\n");
 	withEnumSwitch(stream);
 	rewind(stream);
