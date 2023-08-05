@@ -3,5 +3,5 @@
 
 #include "graficador.c"
 
-void printArray(int a[], int maxWordLength);
+void printArray(unsigned a[], unsigned maxWordLength);
 #endif
