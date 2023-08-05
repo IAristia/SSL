@@ -8,7 +8,7 @@
 #include "histograma-3-rec.c"
 #include "histograma-x.c"
 
-int main()
+int main(void)
 {
 	// loop
 	bool exit = false;
