@@ -2,17 +2,18 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-
+#include <stdlib.h>
 #include "histograma-1-enum-switch.c"
 #include "histograma-2-goto.c"
 #include "histograma-3-rec.c"
 #include "histograma-x.c"
 
-
-int main() {
-	//loop
+int main()
+{
+	// loop
 	bool exit = false;
-	while (!exit){
+	while (!exit)
+	{
 		printf("Histograma de palabras\n");
 		printf("opcion 1: con enum switch\n");
 		printf("opcion 2: con goto\n");
@@ -20,13 +21,14 @@ int main() {
 		printf("opcion 4: con Ifs o guardas\n");
 		printf("opcion 5: salir\n");
 		printf("\n\n\ningrese una opcion: ");
-		//get option
+		// get option
 		int option = 0;
 		scanf("%d", &option);
-		//clear screan
+		// clear screan
 		system("cls");
-		//switch option
-		switch (option) {
+		// switch option
+		switch (option)
+		{
 		case 1:
 			withEnumSwitch(stdin);
 			system("pause");
