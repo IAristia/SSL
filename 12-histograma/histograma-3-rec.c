@@ -1,4 +1,7 @@
+#ifndef HISTOGRAMA_3
+#define HISTOGRAMA_3
 #include <stdio.h>
+#include <stdlib.h>
 #include "graficador.h"
 #ifndef MAX_WORD_LENGTH
 #define MAX_WORD_LENGTH 10
@@ -33,3 +36,4 @@ unsigned withRec(FILE *stream)
     read(0, arrayLengths, stream);
     return 0;
 }
+#endif

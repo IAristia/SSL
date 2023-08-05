@@ -1,4 +1,7 @@
+#ifndef HISTOGRAMA_1
+#define HISTOGRAMA_1
 #include <stdio.h>
+#include <stdlib.h>
 #include "graficador.h"
 #ifndef MAX_WORD_LENGTH
 #define MAX_WORD_LENGTH 10
@@ -66,3 +69,4 @@ unsigned withEnumSwitch(FILE *stream)
     printArray(arrayLengths, MAX_WORD_LENGTH);
     return 0;
 }
+#endif

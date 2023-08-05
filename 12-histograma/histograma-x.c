@@ -1,4 +1,7 @@
+#ifndef HISTOGRAMA_X
+#define HISTOGRAMA_X
 #include <stdio.h>
+#include <stdlib.h>
 #include "graficador.h"
 #ifndef MAX_WORD_LENGTH
 #define MAX_WORD_LENGTH 10
@@ -26,3 +29,4 @@ void withX(FILE *stream)
     printArray(arrayLengths, MAX_WORD_LENGTH);
     return;
 }
+#endif

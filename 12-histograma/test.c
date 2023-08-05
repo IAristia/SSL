@@ -1,3 +1,5 @@
+#ifndef TEST_C
+#define TEST_C
 #ifndef MAX_WORD_LENGTH
 #define MAX_WORD_LENGTH 10
 #endif
@@ -27,3 +29,4 @@ int main()
 	fclose(stream);
 	return 0;
 }
+#endif

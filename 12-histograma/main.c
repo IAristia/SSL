@@ -1,5 +1,5 @@
-
-
+#ifndef _MAIN
+#define _MAIN
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -56,3 +56,4 @@ int main(void)
 		system("cls");
 	}
 }
+#endif

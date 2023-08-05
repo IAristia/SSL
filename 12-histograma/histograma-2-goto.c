@@ -1,4 +1,7 @@
+#ifndef HISTOGRAMA_2
+#define HISTOGRAMA_2
 #include <stdio.h>
+#include <stdlib.h>
 #include "graficador.h"
 #ifndef MAX_WORD_LENGTH
 #define MAX_WORD_LENGTH 10
@@ -27,3 +30,4 @@ end:
 	printArray(arrayLengths, MAX_WORD_LENGTH);
 	return;
 }
+#endif
