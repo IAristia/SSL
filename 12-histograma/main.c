@@ -22,7 +22,7 @@ int main(void)
 		printf("opcion 5: salir\n");
 		printf("\n\n\ningrese una opcion: ");
 		// get option
-		int option = 0;
+		unsigned option = 0;
 		scanf("%d", &option);
 		// clear screan
 		system("cls");

@@ -4,7 +4,7 @@
 #define MAX_WORD_LENGTH 10
 #endif
 
-int withEnumSwitch(FILE* stream)
+unsigned withEnumSwitch(FILE *stream)
 {
     typedef enum
     {
@@ -13,8 +13,8 @@ int withEnumSwitch(FILE* stream)
     } State;
 
     // Initial state
-    int c, ncw; // ncw = numero de caracteres de la palabra
-    int arrayLengths[MAX_WORD_LENGTH + 1] = {0};
+    unsigned c, ncw; // ncw = numero de caracteres de la palabra
+    unsigned arrayLengths[MAX_WORD_LENGTH + 1] = {0};
     State s = Out;
     ncw = 0;
     system("cls");
@@ -22,7 +22,6 @@ int withEnumSwitch(FILE* stream)
     printf("ingrese el texto a analizar (enter and Ctrl-Z and enter to exit):\n");
     while ((c = getc(stream)) != EOF)
     {
-
         switch (s)
         {
         case Out:
