@@ -15,12 +15,12 @@ int main(void)
 	while (!exit)
 	{
 		printf("Histograma de palabras\n");
-		printf("opcion 1: con enum switch\n");
-		printf("opcion 2: con goto\n");
-		printf("opcion 3: con recursividad\n");
-		printf("opcion 4: con Ifs o guardas\n");
-		printf("opcion 5: salir\n");
-		printf("\n\n\ningrese una opcion: ");
+		printf("Opción 1: con enum switch\n");
+		printf("Opción 2: con goto\n");
+		printf("Opción 3: con recursividad\n");
+		printf("Opción 4: con Ifs o guardas\n");
+		printf("Opción 5: salir\n");
+		printf("\n\n\nIngrese una opción: ");
 		// get option
 		unsigned option = 0;
 		scanf("%d", &option);
@@ -46,9 +46,11 @@ int main(void)
 			system("pause");
 			break;
 		case 5:
-			return 0;
+			exit = true;
+			break;
 		default:
-			printf("opcion invalida\n");
+			printf("Opción inválida\n");
+			system("pause");
 			break;
 		}
 		system("cls");

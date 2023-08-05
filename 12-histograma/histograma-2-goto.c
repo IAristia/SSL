@@ -19,14 +19,9 @@ read:
 	{
 		arrayLengths[len >= MAX_WORD_LENGTH ? MAX_WORD_LENGTH : len - 1]++;
 		len = 0;
-		if (c == '\n')
-			goto show;
 	}
 	else
 		len++;
-	goto read;
-show:
-	printArray(arrayLengths, MAX_WORD_LENGTH);
 	goto read;
 end:
 	printArray(arrayLengths, MAX_WORD_LENGTH);
