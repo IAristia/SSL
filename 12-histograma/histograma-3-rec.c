@@ -1,13 +1,18 @@
-#ifndef HISTOGRAMA_3
-#define HISTOGRAMA_3
 #include <stdio.h>
 #include <stdlib.h>
 #include "graficador.h"
+#include "histograma.h"
 #ifndef MAX_WORD_LENGTH
 #define MAX_WORD_LENGTH 10
 #endif
 
-void read(unsigned len, unsigned arrayLengths[MAX_WORD_LENGTH + 1], FILE *stream)
+typedef enum
+{
+    In,
+    Out,
+} State;
+
+void read(unsigned ncw, unsigned arrayLengths[MAX_WORD_LENGTH + 1], State s, FILE *stream)
 {
     unsigned c = getc(stream);
     if (c == EOF)
@@ -15,14 +20,41 @@ void read(unsigned len, unsigned arrayLengths[MAX_WORD_LENGTH + 1], FILE *stream
         printArray(arrayLengths, MAX_WORD_LENGTH);
         return;
     }
-    if (c == ' ' || c == '\n' || c == '\t')
+
+    if (s == Out)
     {
-        arrayLengths[len >= MAX_WORD_LENGTH ? MAX_WORD_LENGTH : len - 1]++;
-        len = 0;
+        if (c == ' ' || c == '\n' || c == '\t')
+        {
+            s = Out;
+            read(ncw, arrayLengths, s, stream);
+        }
+        else
+        {
+            s = In;
+            ncw = 0;
+            read(ncw, arrayLengths, s, stream);
+        }
     }
-    else
-        len++;
-    read(len, arrayLengths, stream);
+    else if (s == In)
+    {
+        if (c == ' ' || c == '\n' || c == '\t')
+        {
+            if (ncw > MAX_WORD_LENGTH)
+                arrayLengths[MAX_WORD_LENGTH]++;
+            else
+                arrayLengths[ncw]++;
+            ncw = 0;
+            s = Out;
+            read(ncw, arrayLengths, s, stream);
+        }
+        else
+        {
+            s = In;
+            ncw++;
+            read(ncw, arrayLengths, s, stream);
+        }
+    }
+
     return;
 }
 
@@ -31,9 +63,10 @@ unsigned withRec(FILE *stream)
     system("cls");
     printf("Longitud máxima de palabra: %d\n", MAX_WORD_LENGTH);
     printf("ingrese el texto a analizar(enter and Ctrl-Z and enter to exit):\n");
-    getc(stream);
+    // getc(stream);
+    State s = Out;
+    unsigned ncw = 0;
     unsigned arrayLengths[MAX_WORD_LENGTH + 1] = {0};
-    read(0, arrayLengths, stream);
+    read(ncw, arrayLengths, s, stream);
     return 0;
 }
-#endif
