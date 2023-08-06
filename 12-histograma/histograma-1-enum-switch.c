@@ -1,8 +1,7 @@
-#ifndef HISTOGRAMA_1
-#define HISTOGRAMA_1
 #include <stdio.h>
 #include <stdlib.h>
 #include "graficador.h"
+#include "histograma.h"
 #ifndef MAX_WORD_LENGTH
 #define MAX_WORD_LENGTH 10
 #endif
@@ -14,12 +13,10 @@ unsigned withEnumSwitch(FILE *stream)
         In,
         Out,
     } State;
-
     // Initial state
-    unsigned c, ncw; // ncw = numero de caracteres de la palabra
+    unsigned c, ncw = 0; // ncw = numero de caracteres de la palabra
     unsigned arrayLengths[MAX_WORD_LENGTH + 1] = {0};
     State s = Out;
-    ncw = 0;
     system("cls");
     printf("Longitud máxima de palabra: %d\n", MAX_WORD_LENGTH);
     printf("ingrese el texto a analizar (enter and Ctrl-Z and enter to exit):\n");
@@ -46,12 +43,6 @@ unsigned withEnumSwitch(FILE *stream)
             {
             case ' ':
             case '\t':
-                s = Out;
-                if (ncw > MAX_WORD_LENGTH)
-                    arrayLengths[MAX_WORD_LENGTH]++;
-                else
-                    arrayLengths[ncw]++;
-                break;
             case '\n':
                 s = Out;
                 if (ncw > MAX_WORD_LENGTH)
@@ -69,4 +60,3 @@ unsigned withEnumSwitch(FILE *stream)
     printArray(arrayLengths, MAX_WORD_LENGTH);
     return 0;
 }
-#endif
