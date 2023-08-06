@@ -1,32 +1,60 @@
-#ifndef HISTOGRAMA_X
-#define HISTOGRAMA_X
 #include <stdio.h>
 #include <stdlib.h>
 #include "graficador.h"
+#include "histograma.h"
 #ifndef MAX_WORD_LENGTH
 #define MAX_WORD_LENGTH 10
 #endif
 
 void withX(FILE *stream)
 {
-    unsigned c, len = 0;
+    typedef enum
+    {
+        In,
+        Out,
+    } State;
+    unsigned c, ncw = 0;
+    State s = Out;
     unsigned arrayLengths[MAX_WORD_LENGTH + 1] = {0};
     system("cls");
     printf("Longitud máxima de palabra: %d\n", MAX_WORD_LENGTH);
     printf("ingrese el texto a analizar (enter and Ctrl-Z and enter to exit):\n");
     while ((c = getc(stream)) != EOF)
     {
-        if (c == ' ' || c == '\n' || c == '\t')
+        if (s == Out)
         {
-            if (len < 1)
+            if (c == ' ' || c == '\n' || c == '\t')
+            {
+                s = Out;
                 continue;
-            arrayLengths[len >= MAX_WORD_LENGTH ? MAX_WORD_LENGTH : len - 1]++;
-            len = 0;
+            }
+            else
+            {
+                s = In;
+                ncw = 0;
+                continue;
+            }
         }
-        else
-            len++;
+        else if (s == In)
+        {
+            if (c == ' ' || c == '\n' || c == '\t')
+            {
+                if (ncw > MAX_WORD_LENGTH)
+                    arrayLengths[MAX_WORD_LENGTH]++;
+                else
+                    arrayLengths[ncw]++;
+                ncw = 0;
+                s = Out;
+                continue;
+            }
+            else
+            {
+                s = In;
+                ncw++;
+                continue;
+            }
+        }
     }
     printArray(arrayLengths, MAX_WORD_LENGTH);
     return;
 }
-#endif
