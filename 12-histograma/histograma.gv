@@ -7,9 +7,10 @@ digraph G {
     I [label = "IN"];
     O [label = "OUT"];
     
-    I -> O [label = "espaciador"];
-    O -> I [label = "no espaciador \n ++nw"];
-    I -> I [label = "no espaciador"];
+    O -> I [label = "no espaciador"];
+    I -> I [label = "no espaciador \n ++ncw"];
     O -> O [label = "espaciador"];
+    I -> O [label = "espaciador \n arrayLengths[ncw]++"];
+
 
 }
