@@ -1,12 +1,8 @@
-#ifndef _MAIN
-#define _MAIN
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include "histograma-1-enum-switch.c"
-#include "histograma-2-goto.c"
-#include "histograma-3-rec.c"
-#include "histograma-x.c"
+#include "histograma.h"
+// #include "graficador.h"
 
 int main(void)
 {
@@ -18,7 +14,7 @@ int main(void)
 		printf("Opción 1: con enum switch\n");
 		printf("Opción 2: con goto\n");
 		printf("Opción 3: con recursividad\n");
-		printf("Opción 4: con Ifs o guardas\n");
+		printf("Opción 4: con continue\n");
 		printf("Opción 5: salir\n");
 		printf("\n\n\nIngrese una opción: ");
 		// get option
@@ -56,4 +52,3 @@ int main(void)
 		system("cls");
 	}
 }
-#endif
