@@ -1,6 +1,5 @@
-#ifndef GRAFICADOR_C
-#define GRAFICADOR_C
 #include <stdio.h>
+#include "graficador.h"
 
 void printArray(unsigned a[], unsigned maxWordLength)
 {
@@ -13,4 +12,3 @@ void printArray(unsigned a[], unsigned maxWordLength)
 	}
 	return;
 }
-#endif
