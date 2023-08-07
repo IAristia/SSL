@@ -15,7 +15,7 @@ M = (Q, Σ, q<sub>0</sub>, T, A) donde:
 - Q = {IN, OUT}
 - Σ = ASCII, partición P = {{espaciador}, {no espaciador}}.
 - q<sub>0</sub> = OUT
-- T = {OUT => no espaciador => IN, OUT => espaciador => OUT, IN => espaciador => => (arrayLengths[ncw > MAX_WORD_LENGTH ? MAX_WORD_LENGTH : ncw-1]++ ,  ncw=0)   OUT, IN => no espaciador => ncw++ => IN}
+- T = {OUT => no espaciador => IN, OUT => espaciador => OUT, IN => espaciador => (arrayLengths[ncw > MAX_WORD_LENGTH ? MAX_WORD_LENGTH : ncw-1]++ ,  ncw=0) => OUT, IN => no espaciador => ncw++ => IN}
 - A = {{++ncw}; {arrayLengths[ncw > MAX_WORD_LENGTH ? MAX_WORD_LENGTH : ncw-1]++ ,  ncw=0}}
 
 # Respuestas
