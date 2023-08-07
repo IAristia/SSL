@@ -39,8 +39,7 @@ int main()
 			printf("Opción inválida\n");
 			break;
 		}
-		printf("--------------------\n");
-		printf("--------------------\n");
+		printf("\n--------------------\n");
 	}
 	return 0;
 }

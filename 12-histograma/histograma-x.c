@@ -5,7 +5,6 @@ void withX(FILE *stream)
     int c, ncw = 0;
     State s = Out;
     unsigned arrayLengths[MAX_WORD_LENGTH + 1] = {0};
-    printf("--------------------\n");
     printf("Longitud máxima de palabra: %d\n", MAX_WORD_LENGTH);
     printf("ingrese el texto a analizar (enter and Ctrl-Z and enter to exit):\n");
     while ((c = getc(stream)) != EOF)
