@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "graficador.h"
 
 void printArray(unsigned a[], unsigned maxWordLength)

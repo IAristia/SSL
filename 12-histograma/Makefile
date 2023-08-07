@@ -1,28 +1,31 @@
+# Compiler
 CC = gcc
-CFLAGS = -std=c18
+# Compiler flags
+CFLAGS = -Wall -Wextra -g -std=c18
 
-all: longitudes
+# Source files
+SRCS = $(wildcard *.c)
+# Header files
+HDRS = $(wildcard *.h)
 
-longitudes: histograma-1-enum-switch.o histograma-2-goto.o histograma-3-rec.o histograma-x.o graficador.o main.o
-	$(CC) $(CFLAGS) histograma-1-enum-switch.o histograma-2-goto.o histograma-3-rec.o histograma-x.o graficador.o main.o -o longitudes.exe
+# Object files
+OBJS = $(SRCS:.c=.o)
 
-main.o: main.c graficador.h histograma.h
-	$(CC) $(CFLAGS) -c main.c -o main.o
+# Executable name
+EXECUTABLE = histograma
 
-histograma-1-enum-switch.o: histograma-1-enum-switch.c histograma.h
-	$(CC) $(CFLAGS) -c histograma-1-enum-switch.c -o histograma-1-enum-switch.o
+.PHONY: all clean
 
-histograma-2-goto.o: histograma-2-goto.c histograma.h
-	$(CC) $(CFLAGS) -c histograma-2-goto.c -o histograma-2-goto.o
+all: $(EXECUTABLE)
 
-histograma-3-rec.o: histograma-3-rec.c histograma.h
-	$(CC) $(CFLAGS) -c histograma-3-rec.c -o histograma-3-rec.o
+$(EXECUTABLE): $(filter-out test.o, $(OBJS))
+	$(CC) -o $@ $^ $(CFLAGS)
 
-histograma-x.o: histograma-x.c histograma.h
-	$(CC) $(CFLAGS) -c histograma-x.c -o histograma-x.o
+test: $(filter-out main.o, $(OBJS))
+	$(CC) -o $@ $^ $(CFLAGS)
 
-graficador.o: graficador.c graficador.h
-	$(CC) $(CFLAGS) -c graficador.c -o graficador.o
+%.o: %.c $(HDRS)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f *.o longitudes.exe
+	rm -f $(OBJS) $(EXECUTABLE)

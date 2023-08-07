@@ -5,3 +5,6 @@
 *.pdb
 *.ini
 *.suo
+.obj
+**/test
+**/histograma

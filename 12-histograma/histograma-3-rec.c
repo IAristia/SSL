@@ -1,20 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "graficador.h"
 #include "histograma.h"
-#ifndef MAX_WORD_LENGTH
-#define MAX_WORD_LENGTH 10
-#endif
-
-typedef enum
-{
-    In,
-    Out,
-} State;
 
 void read(unsigned ncw, unsigned arrayLengths[MAX_WORD_LENGTH + 1], State s, FILE *stream)
 {
-    unsigned c = getc(stream);
+    int c = getc(stream);
     if (c == EOF)
     {
         printArray(arrayLengths, MAX_WORD_LENGTH);
@@ -60,7 +48,7 @@ void read(unsigned ncw, unsigned arrayLengths[MAX_WORD_LENGTH + 1], State s, FIL
 
 unsigned withRec(FILE *stream)
 {
-    system("cls");
+    printf("--------------------\n");
     printf("Longitud máxima de palabra: %d\n", MAX_WORD_LENGTH);
     printf("ingrese el texto a analizar(enter and Ctrl-Z and enter to exit):\n");
     // getc(stream);

@@ -1,54 +1,46 @@
-#include <stdio.h>
-#include <stdbool.h>
-#include <stdlib.h>
 #include "histograma.h"
 // #include "graficador.h"
 
-int main(void)
+int main()
 {
-	// loop
 	bool exit = false;
 	while (!exit)
 	{
-		printf("Histograma de palabras\n");
-		printf("Opción 1: con enum switch\n");
-		printf("Opción 2: con goto\n");
-		printf("Opción 3: con recursividad\n");
-		printf("Opción 4: con continue\n");
-		printf("Opción 5: salir\n");
+		printf("Histograma de Palabras\n");
+		printf("Opción 1: Con enum switch\n");
+		printf("Opción 2: Con goto\n");
+		printf("Opción 3: Con recursividad\n");
+		printf("Opción 4: Con continue\n");
+		printf("Opción 5: Salir\n");
 		printf("\n\n\nIngrese una opción: ");
 		// get option
 		unsigned option = 0;
 		scanf("%d", &option);
-		// clear screan
-		system("cls");
+		printf("--------------------\n");
 		// switch option
 		switch (option)
 		{
 		case 1:
 			withEnumSwitch(stdin);
-			system("pause");
 			break;
 		case 2:
 			withGoTo(stdin);
-			system("pause");
 			break;
 		case 3:
 			withRec(stdin);
-			system("pause");
 			break;
 		case 4:
 			withX(stdin);
-			system("pause");
 			break;
 		case 5:
 			exit = true;
 			break;
 		default:
 			printf("Opción inválida\n");
-			system("pause");
 			break;
 		}
-		system("cls");
+		printf("--------------------\n");
+		printf("--------------------\n");
 	}
+	return 0;
 }

@@ -1,15 +1,4 @@
-#ifndef TEST_C
-#define TEST_C
-#ifndef MAX_WORD_LENGTH
-#define MAX_WORD_LENGTH 10
-#endif
-
-#include <stdio.h>
-#include <stdlib.h>
-#include "histograma-1-enum-switch.c"
-#include "histograma-2-goto.c"
-#include "histograma-3-rec.c"
-#include "histograma-x.c"
+#include "histograma.h"
 
 int main()
 {
@@ -29,4 +18,3 @@ int main()
 	fclose(stream);
 	return 0;
 }
-#endif
