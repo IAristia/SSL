@@ -13,16 +13,17 @@
 M = (Q, Σ, q<sub>0</sub>, T, A) donde:
 
 - Q = {IN, OUT}
-- Σ = caracteres pertenecientes a ASCII, con partición P = {{espaciador}, {no espaciador}}.
+- Σ = ASCII, partición P = {{espaciador}, {no espaciador}}.
 - q<sub>0</sub> = OUT
 - T = {OUT => no espaciador => IN, OUT => espaciador => OUT, IN => espaciador => OUT, IN => no espaciador => IN}
-- A = conjunto de acciones
-- TT
+- A = {++ncw, arrayLengths[ncw]++}
+- Tabla de transiciones y acciones asociadas
 
 | T    | espaciador | no espaciador|
 |------|------------|--------------|
 | OUT± | OUT        | IN           |
-| IN+  | OUT        | IN           |
+| IN+  | OUT (arrayLengths[ncw]++)        | IN    (ncw++)        |
+
 
 # Respuestas
 
