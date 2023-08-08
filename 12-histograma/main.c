@@ -1,5 +1,4 @@
 #include "histograma.h"
-// #include "graficador.h"
 
 int main()
 {
@@ -11,7 +10,7 @@ int main()
 		printf("Opción 2: Con goto\n");
 		printf("Opción 3: Con recursividad\n");
 		printf("Opción 4: Con continue\n");
-		printf("Opción 5: Salir\n");
+		printf("Opción 0: Salir\n");
 		printf("\n\n\nIngrese una opción: ");
 		// get option
 		unsigned option = 0;
@@ -32,11 +31,11 @@ int main()
 		case 4:
 			withX(stdin);
 			break;
-		case 5:
+		case 0:
 			exit = true;
 			break;
 		default:
-			printf("Opción inválida\n");
+			printf("Opción inválida: %d\n", option);
 			break;
 		}
 		printf("\n--------------------\n");
