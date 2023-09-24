@@ -11,6 +11,7 @@ int main()
 
     while (GetNextToken(&token))
     {
+        printf("DENTRO DEL WHILE");
         switch (token.type)
         {
         case Number:

@@ -3,7 +3,8 @@
 
 #include <stdbool.h>
 
-enum TokenType {
+enum TokenType
+{
     Number,
     Addition = '+',
     Multiplication = '*',
@@ -13,17 +14,36 @@ enum TokenType {
     LexError
 };
 
+enum States
+{
+    Inicio,
+    Sumar,
+    Restar,
+    Dividir,
+    Multiplicar,
+    Resultado,
+    CaracterMenos,
+    LiteralPositivo,
+    LiteralPositivoFlotante,
+    LiteralPositivoFinal,
+    LiteralNegativo,
+    LiteralNegativoFlotante,
+    LiteralNegativoFinal,
+    Error
+};
+
 typedef enum TokenType TokenType;
 
 typedef double TokenValue;
 
-typedef struct {
+typedef struct
+{
     TokenType type;
     TokenValue val;
 } Token;
 
 bool GetNextToken(
-    Token *t /*out*/);  // Retorna si pudo leer, almacena en t el token leido
+    Token *t /*out*/); // Retorna si pudo leer, almacena en t el token leido
 Token createToken(double value, TokenType type);
 
 #endif /* SCANNER_H*/
