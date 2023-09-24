@@ -1,1 +1,0 @@
-bool GetNextToken(Token *t /*out*/); // Retorna si pudo leer, almacena en t el token leido.
