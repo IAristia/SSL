@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <errno.h>
 
 #include "Scanner.h"
 #include "StackOfDoublesModule.h"
@@ -36,7 +37,7 @@ int main()
             {
                 // Rompe el programa
                 printf("[Error]: divisor cero\n");
-                return 1;
+                return ERANGE;
             }
             break;
         }
@@ -45,7 +46,7 @@ int main()
     if (token.type == LexError)
     {
         printf("[LexError] - Valor %f\n", token.val);
-        return 1;
+        return EIO; 
     }
 
     while (!IsEmpty())
