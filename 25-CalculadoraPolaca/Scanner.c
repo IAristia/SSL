@@ -68,6 +68,7 @@ bool GetNextToken(Token *t)
                 }
                  else // leo un espaciador u operando
                 {
+                ungetc(c,stdin);
                 estado = Restar;
                 }        
             }
