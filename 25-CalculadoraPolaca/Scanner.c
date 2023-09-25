@@ -43,14 +43,17 @@ bool GetNextToken(Token *t)
                 }            
                 else if (c == '+')
                 {
+                    ungetc(c,stdin);
                     estado = Sumar;
                 }
                 else if (c == '/')
                 {
+                    ungetc(c,stdin);
                     estado = Dividir;
                 }
                 else if (c == '*')
                 {
+                    ungetc(c,stdin);
                     estado = Multiplicar;
                 }
             }
@@ -164,28 +167,24 @@ bool GetNextToken(Token *t)
             }
             else if (estado == Sumar)
             {
-                ungetc(c, stdin);
                 estado = Inicio;
                 *t = createToken(0.0, Addition);
                 return true;
             }
             else if (estado == Restar)
             {
-                ungetc(c, stdin);
                 estado = Inicio;
                 *t = createToken(0.0, Substraction);
                 return true;
             }
             else if (estado == Dividir)
             {
-                ungetc(c, stdin);
                 estado = Inicio;
                 *t = createToken(0.0, Division);
                 return true;
             }
             else if (estado == Multiplicar)
             {
-                ungetc(c, stdin);
                 estado = Inicio;
                 *t = createToken(0.0, Multiplication);
                 return true;
@@ -201,9 +200,18 @@ bool GetNextToken(Token *t)
         else
         {
             estado = Error;
+            printf("entre %c\n", c);
         }
 
     }
+
+if (estado == CaracterMenos) {
+
+
+}
+
+
+printf("%d", estado);
     // Fin del stream
     *t = createToken(0.0, PopResult);
     return false;
