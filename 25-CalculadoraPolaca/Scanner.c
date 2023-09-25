@@ -130,10 +130,8 @@ bool GetNextToken(Token *t)
         {
             if (!isdigit(c) && c != '.')
             {
-                printf("INGRESE UN NO DIGITO\n");
                 estado = LiteralPositivoFinal;
                 ungetc(c, stdin);
-                // Ver si crear token aca
             }
             else if (c == '.')
             {
@@ -149,7 +147,11 @@ bool GetNextToken(Token *t)
         }
         else if (estado == LiteralPositivoFlotante)
         {
-            if (!isdigit(c))
+            if (c == '.')
+            {
+                estado = Error;
+            }
+            else if (!isdigit(c))
             {
                 estado = LiteralPositivoFinal;
                 // Ver si crear token aca
