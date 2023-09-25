@@ -1,3 +1,4 @@
+// dot scanner.gv -Tpng -o scanner.png
 digraph G {
 
     graph  [bgcolor="white", fontname="Arial", fontsize=12]
@@ -8,23 +9,25 @@ digraph G {
     LITERAL_POSITIVO [label = "LITERAL \nPOSITIVO"];
     LITERAL_POSITIVO_FLOTANTE [label = "LITERAL \n POSITIVO\n FLOTANTE"];
     LITERAL_POSITIVO_FINAL [label = "LITERAL \nPOSITIVO\n FINAL"];
+    DIVIDIR [label = "DIVIDIR"];
+    SUMAR [label = "SUMAR"];
     CARACTER_MENOS [label = "CARACTER\n MENOS"];
+    RESTAR [label = "RESTAR"];    
     LITERAL_NEGATIVO [label = "LITERAL\n NEGATIVO"];
     LITERAL_NEGATIVO_FLOTANTE [label = "LITERAL \n NEGATIVO\n FLOTANTE"];
     LITERAL_NEGATIVO_FINAL [label = "LITERAL \nNEGATIVO\n FINAL"];
-    RESTAR [label = "RESTAR"];
-    DIVIDIR [label = "DIVIDIR"];
-    SUMAR [label = "SUMAR"];
     MULTIPLICAR [label = "MULTIPLICAR"];
     RESULTADO [label = "MOSTRAR \nRESULTADO"];
     ERROR [label = "ERROR"];
+
 
     INICIO -> INICIO [label = "espaciador"];
     INICIO -> LITERAL_POSITIVO [label = "dígito"];
     LITERAL_POSITIVO -> LITERAL_POSITIVO [label = "dígito"];
     LITERAL_POSITIVO -> LITERAL_POSITIVO_FLOTANTE [label = "."]; 
     LITERAL_POSITIVO_FLOTANTE -> LITERAL_POSITIVO_FLOTANTE [label = "dígito"]; 
-    LITERAL_POSITIVO_FLOTANTE -> LITERAL_POSITIVO_FINAL [label = "espaciador u operando"]; 
+    LITERAL_POSITIVO_FLOTANTE -> LITERAL_POSITIVO_FINAL [label = "espaciador u operando"];
+    LITERAL_POSITIVO_FLOTANTE -> ERROR [label ="."]; 
     LITERAL_POSITIVO -> LITERAL_POSITIVO_FINAL [label = "espaciador u operando"]; 
 
     INICIO -> CARACTER_MENOS [label ="-"];
@@ -34,6 +37,7 @@ digraph G {
     LITERAL_NEGATIVO -> LITERAL_NEGATIVO_FINAL [label ="espaciador u operando"];
     LITERAL_NEGATIVO -> LITERAL_NEGATIVO_FLOTANTE [label ="."];
     LITERAL_NEGATIVO_FLOTANTE -> LITERAL_NEGATIVO_FLOTANTE [label ="dígito"];
+    LITERAL_NEGATIVO_FLOTANTE -> ERROR [label ="."];
     LITERAL_NEGATIVO_FLOTANTE -> LITERAL_NEGATIVO_FINAL[label = "espaciador u operando"];
 
     INICIO -> DIVIDIR[label = "/"]
