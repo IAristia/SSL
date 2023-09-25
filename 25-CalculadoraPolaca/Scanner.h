@@ -46,4 +46,6 @@ bool GetNextToken(
     Token *t /*out*/); // Retorna si pudo leer, almacena en t el token leido
 Token createToken(double value, TokenType type);
 
+bool cumpleRestriccion (char);
+
 #endif /* SCANNER_H*/
