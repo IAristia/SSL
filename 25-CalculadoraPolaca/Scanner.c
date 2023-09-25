@@ -28,6 +28,8 @@ bool GetNextToken(Token *t)
                 else if (c == '-')
                 {
                     estado = CaracterMenos;
+                    lexeme[contador] = c;
+                    contador++;
                 }
                 else if (isdigit(c))
                 {
@@ -37,9 +39,7 @@ bool GetNextToken(Token *t)
                 }
                 else if (c == '.')
                 {
-                    estado = LiteralPositivoFlotante;
-                    lexeme[contador] = c;
-                    contador++;
+                    estado = Error;
                 }            
                 else if (c == '+')
                 {
@@ -64,9 +64,7 @@ bool GetNextToken(Token *t)
                 }
                 else if (c == '.') // leo un .
                 {
-                    estado = LiteralNegativoFlotante;
-                    lexeme[contador] = c;
-                    contador++;
+                    estado = Error;
                 }
                  else // leo un espaciador u operando
                 {
@@ -103,7 +101,7 @@ bool GetNextToken(Token *t)
                 }
                 else if (c == '.')
                 {
-                    estado = LexError;
+                    estado = Error;
                 }
                 else // c = espaciador u operando
                 {
@@ -148,7 +146,7 @@ bool GetNextToken(Token *t)
                 }
                 else if (c == '.')
                 {
-                    estado = LexError;
+                    estado = Error;
                 }
                 else 
                 {
@@ -220,5 +218,5 @@ Token createToken(double value, TokenType type)
 }
 
 bool cumpleRestriccion (char c) {
-    return isdigit(c) || c == '+' || c == '-' || c == '/' || c == '*' || c == ' ';
+    return isdigit(c) || c == '+' || c == '-' || c == '/' || c == '*' || c == ' ' || c == '.';
 }
