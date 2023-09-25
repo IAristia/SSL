@@ -5,40 +5,31 @@ digraph G {
 
     node [shape = circle, witdth = 5];
     
-    INICIO [label = "INICIO"];
-    LITERAL_POSITIVO [label = "LITERAL \nPOSITIVO"];
-    LITERAL_POSITIVO_FLOTANTE [label = "LITERAL \n POSITIVO\n FLOTANTE"];
-    LITERAL_POSITIVO_FINAL [label = "LITERAL \nPOSITIVO\n FINAL"];
-    DIVIDIR [label = "DIVIDIR"];
-    SUMAR [label = "SUMAR"];
-    CARACTER_MENOS [label = "CARACTER\n MENOS"];
-    RESTAR [label = "RESTAR"];    
-    LITERAL_NEGATIVO [label = "LITERAL\n NEGATIVO"];
-    LITERAL_NEGATIVO_FLOTANTE [label = "LITERAL \n NEGATIVO\n FLOTANTE"];
-    LITERAL_NEGATIVO_FINAL [label = "LITERAL \nNEGATIVO\n FINAL"];
-    MULTIPLICAR [label = "MULTIPLICAR"];
-    RESULTADO [label = "MOSTRAR \nRESULTADO"];
-    ERROR [label = "ERROR"];
+    INICIO [label = "INICIO\n-"];
+    PARTE_ENTERA [label = "PARTE \n ENTERA\n+"];
+    DIVIDIR [label = "DIVIDIR\n+"];
+    SUMAR [label = "SUMAR\n+"];
+    CARACTER_MENOS [label = "CARACTER\n MENOS\n+"];
+    RESTAR [label = "RESTAR\n+"];    
+    MULTIPLICAR [label = "MULTIPLICAR \n+"];
+    RESULTADO [label = "MOSTRAR \n RESULTADO\n+"];
+    ERROR [label = "ERROR\n+"];
+    PARTE_FLOTANTE[label= "PARTE \n FLOTANTE\n+"];
 
+
+    INICIO -> ERROR[label = "caracter no válido o . (punto)"]    
 
     INICIO -> INICIO [label = "espaciador"];
-    INICIO -> LITERAL_POSITIVO [label = "dígito"];
-    LITERAL_POSITIVO -> LITERAL_POSITIVO [label = "dígito"];
-    LITERAL_POSITIVO -> LITERAL_POSITIVO_FLOTANTE [label = "."]; 
-    LITERAL_POSITIVO_FLOTANTE -> LITERAL_POSITIVO_FLOTANTE [label = "dígito"]; 
-    LITERAL_POSITIVO_FLOTANTE -> LITERAL_POSITIVO_FINAL [label = "espaciador u operando"];
-    LITERAL_POSITIVO_FLOTANTE -> ERROR [label ="."]; 
-    LITERAL_POSITIVO -> LITERAL_POSITIVO_FINAL [label = "espaciador u operando"]; 
+    INICIO ->PARTE_ENTERA [label = "dígito"];
+    PARTE_ENTERA ->PARTE_ENTERA [label = "dígito"];
+    PARTE_ENTERA ->PARTE_FLOTANTE [label = "."]; 
+    PARTE_FLOTANTE ->PARTE_FLOTANTE [label = "dígito"]; 
+    PARTE_FLOTANTE -> ERROR [label ="."]; 
+
 
     INICIO -> CARACTER_MENOS [label ="-"];
     CARACTER_MENOS -> RESTAR [label ="espaciador u operando"];
-    CARACTER_MENOS -> LITERAL_NEGATIVO [label ="dígito"];
-    LITERAL_NEGATIVO -> LITERAL_NEGATIVO [label ="dígito"];
-    LITERAL_NEGATIVO -> LITERAL_NEGATIVO_FINAL [label ="espaciador u operando"];
-    LITERAL_NEGATIVO -> LITERAL_NEGATIVO_FLOTANTE [label ="."];
-    LITERAL_NEGATIVO_FLOTANTE -> LITERAL_NEGATIVO_FLOTANTE [label ="dígito"];
-    LITERAL_NEGATIVO_FLOTANTE -> ERROR [label ="."];
-    LITERAL_NEGATIVO_FLOTANTE -> LITERAL_NEGATIVO_FINAL[label = "espaciador u operando"];
+    CARACTER_MENOS ->PARTE_ENTERA [label ="dígito"];
 
     INICIO -> DIVIDIR[label = "/"]
     
@@ -46,8 +37,8 @@ digraph G {
 
     INICIO -> MULTIPLICAR[label = "*"]
 
-    INICIO -> RESULTADO[label = "^Z"]
+    INICIO -> RESULTADO[label = "barra n"]
 
-    INICIO -> ERROR[label = "caracter no válido o . (punto)"]
+
 
 }
