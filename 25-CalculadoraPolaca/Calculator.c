@@ -12,7 +12,6 @@ int main()
 
     while (GetNextToken(&token))
     {
-        // printf("Tipo de token: %i\n", token.type);
         switch (token.type)
         {
         case Number:
@@ -39,7 +38,6 @@ int main()
                 // Rompe el programa
                 printf("[Error]: Denominador cero\n");
                 return ERANGE;
-
             }
             break;
         }
@@ -49,7 +47,6 @@ int main()
     {
         printf("[LexError] - Syntax Error: %s\n", token.lexeme);
         return EIO;
-
     }
 
     while (!IsEmpty())

@@ -234,7 +234,6 @@ Token createToken(double value, TokenType type, char lexemeError[])
     token.type = type;
     token.val = value;
     strncpy(token.lexeme, lexemeError, sizeof(token.lexeme));
-    // token.lexeme[sizeof(token.lexeme) - 1] = '\0';
 
     return token;
 }
