@@ -1,6 +1,10 @@
 1. Diagramar en Dot las dependencias entre los componentes e interfaces.
 
+![1](dependencias.png)
+
 2. Definir formalmente y con digrafo en Dot la máquina de estados que implementa GetNextToken, utilizar estados finales para diferentes para cada clase de tokens.
+
+![2](Scanner.png)
 
 M = (Q, Σ, q0, qf, T) donde:
 
@@ -82,7 +86,7 @@ No, debido a que la implementacion de StackModule.h existente en el libro del le
 
 b. ¿Es necesario recompilar la implementación de Stack? ¿Por qué?
 
-Si, porque no es un modulo que este incluido en el estandar C y se debe compilar para que el programa pueda usarlo.
+Si, porque no es un modulo que esté incluido en el estandar C y se debe compilar para que el programa pueda usarlo.
 
 c. ¿Es necesario que Calculator muestre el lexema que originó el error léxico? Justifique su decisión.
 
