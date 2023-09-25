@@ -2,7 +2,7 @@
 
 2. Definir formalmente y con digrafo en Dot la máquina de estados que implementa GetNextToken, utilizar estados finales para diferentes para cada clase de tokens.
 
-M = (Q, Σ, q0, T) donde:
+M = (Q, Σ, q0, qf, T) donde:
 
 Q = {Inicio, Sumar, Restar, Dividir, Multiplicar, Resultado, CaracterMenos, LiteralPositivo, LiteralPositivoFlotante, LiteralPositivoFinal, LiteralNegativo, LiteralNegativoFlotante, LiteralNegativoFinal, Error}
 
