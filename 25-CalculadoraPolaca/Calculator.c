@@ -1,5 +1,6 @@
+
 #include <stdio.h>
-#include <errno.h>
+
 #include "Scanner.h"
 #include "StackOfDoublesModule.h"
 
@@ -10,7 +11,7 @@ int main()
 
     while (GetNextToken(&token))
     {
-        printf("Tipo de token: %i\n", token.type);
+        // printf("Tipo de token: %i\n", token.type);
         switch (token.type)
         {
         case Number:
@@ -35,8 +36,8 @@ int main()
             else
             {
                 // Rompe el programa
-                printf("[Error]: divisor cero\n");
-                return ERANGE;
+                printf("[Error]: Denominador cero\n");
+                return 1;
             }
             break;
         }
@@ -44,8 +45,8 @@ int main()
 
     if (token.type == LexError)
     {
-        printf("[LexError] - Valor %f\n", token.val);
-        return EIO;
+        printf("[LexError] - Syntax Error: %s\n", token.lexeme);
+        return 1;
     }
 
     while (!IsEmpty())

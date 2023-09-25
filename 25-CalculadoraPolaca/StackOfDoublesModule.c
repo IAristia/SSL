@@ -1,4 +1,5 @@
 #include "StackOfDoublesModule.h"
+#include <stdio.h>
 
 static StackItem stack[MAX];
 static StackItem *p = stack;

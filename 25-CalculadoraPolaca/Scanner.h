@@ -40,12 +40,12 @@ typedef struct
 {
     TokenType type;
     TokenValue val;
+    char lexeme[10];
 } Token;
 
 bool GetNextToken(
     Token *t /*out*/); // Retorna si pudo leer, almacena en t el token leido
-Token createToken(double value, TokenType type);
-
-bool cumpleRestriccion (char);
+Token createToken(double value, TokenType type, char lexemeError[]);
+bool cumpleRestriccion(char);
 
 #endif /* SCANNER_H*/

@@ -107,6 +107,8 @@ bool GetNextToken(Token *t)
                 else if (c == '.')
                 {
                     estado = Error;
+                    lexeme[contador] = c;
+                    contador++;
                 }
                 else // c = espaciador u operando
                 {
@@ -119,7 +121,7 @@ bool GetNextToken(Token *t)
                 ungetc(c, stdin);
                 estado = Inicio;
                 double numeroDouble = atof(lexeme);
-                *t = createToken(numeroDouble, Number);
+                *t = createToken(numeroDouble, Number, "");
                 return true;
             }
             else if (estado == LiteralPositivo) // ya leí 1
@@ -153,6 +155,8 @@ bool GetNextToken(Token *t)
                 else if (c == '.')
                 {
                     estado = Error;
+                    lexeme[contador] = c;
+                    contador++;
                 }
                 else
                 {
@@ -165,66 +169,72 @@ bool GetNextToken(Token *t)
                 ungetc(c, stdin);
                 estado = Inicio;
                 double numeroDouble = atof(lexeme);
-                *t = createToken(numeroDouble, Number);
+                *t = createToken(numeroDouble, Number, "");
                 return true;
             }
             else if (estado == Sumar)
             {
                 estado = Inicio;
-                *t = createToken(0.0, Addition);
+                *t = createToken(0.0, Addition, "");
                 return true;
             }
             else if (estado == Restar)
             {
                 estado = Inicio;
-                *t = createToken(0.0, Substraction);
+                *t = createToken(0.0, Substraction, "");
                 return true;
             }
             else if (estado == Dividir)
             {
                 estado = Inicio;
-                *t = createToken(0.0, Division);
+                *t = createToken(0.0, Division, "");
                 return true;
             }
             else if (estado == Multiplicar)
             {
                 estado = Inicio;
-                *t = createToken(0.0, Multiplication);
+                *t = createToken(0.0, Multiplication, "");
                 return true;
             }
             else if (estado == Error)
             {
                 ungetc(c, stdin);
                 estado = Inicio;
-                *t = createToken(0.0, LexError);
+                *t = createToken(0.0, LexError, lexeme);
                 return false;
             }
         }
         else
         {
             estado = Error;
-            printf("entre %c\n", c);
+            lexeme[contador] = c;
+            contador++;
         }
     }
 
-    printf("Estado: %d\n", estado);
-
     if (estado == CaracterMenos)
     {
-        *t = createToken(0.0, Substraction);
+        *t = createToken(0.0, Substraction, "");
         return true;
+    }
+    else if (estado == Error)
+    {
+        *t = createToken(0.0, LexError, lexeme);
+        return false;
     }
 
     // Fin del stream
-    *t = createToken(0.0, PopResult);
+    *t = createToken(0.0, PopResult, "");
     return false;
 }
 
-Token createToken(double value, TokenType type)
+Token createToken(double value, TokenType type, char lexemeError[])
 {
     Token token;
     token.type = type;
     token.val = value;
+    strncpy(token.lexeme, lexemeError, sizeof(token.lexeme));
+    // token.lexeme[sizeof(token.lexeme) - 1] = '\0';
 
     return token;
 }
