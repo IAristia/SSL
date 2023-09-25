@@ -40,25 +40,25 @@ bool GetNextToken(Token *t)
                 else if (c == '.')
                 {
                     estado = Error;
-                }            
+                }
                 else if (c == '+')
                 {
-                    ungetc(c,stdin);
+                    ungetc(c, stdin);
                     estado = Sumar;
                 }
                 else if (c == '/')
                 {
-                    ungetc(c,stdin);
+                    ungetc(c, stdin);
                     estado = Dividir;
                 }
                 else if (c == '*')
                 {
-                    ungetc(c,stdin);
+                    ungetc(c, stdin);
                     estado = Multiplicar;
                 }
             }
             else if (estado == CaracterMenos) // ya leí - , ahora puedo leer un dígito, otro operadoru .
-            { 
+            {
                 if (isdigit(c)) // leo un dígito
                 {
                     estado = LiteralNegativo;
@@ -69,21 +69,21 @@ bool GetNextToken(Token *t)
                 {
                     estado = Error;
                 }
-                 else // leo un espaciador u operando
+                else // leo un espaciador u operando
                 {
-                ungetc(c,stdin);
-                estado = Restar;
-                }        
+                    ungetc(c, stdin);
+                    estado = Restar;
+                }
             }
             else if (estado == LiteralNegativo) // ya leí -1
-            {  
+            {
                 if (isdigit(c))
                 {
                     estado = LiteralNegativo;
                     lexeme[contador] = c;
                     contador++;
-                }                
-                
+                }
+
                 else if (c == '.')
                 {
                     estado = LiteralNegativoFlotante;
@@ -92,11 +92,12 @@ bool GetNextToken(Token *t)
                 }
                 else // c = espaciador u operando
                 {
-                estado = LiteralNegativoFinal;
+                    estado = LiteralNegativoFinal;
+                    ungetc(c, stdin);
                 }
             }
             else if (estado == LiteralNegativoFlotante)
-            {    
+            {
                 if (isdigit(c))
                 {
                     estado = LiteralNegativoFlotante;
@@ -110,12 +111,12 @@ bool GetNextToken(Token *t)
                 else // c = espaciador u operando
                 {
                     estado = LiteralNegativoFinal;
+                    ungetc(c, stdin);
                 }
-            
             }
             else if (estado == LiteralNegativoFinal)
             {
-                ungetc(c,stdin);
+                ungetc(c, stdin);
                 estado = Inicio;
                 double numeroDouble = atof(lexeme);
                 *t = createToken(numeroDouble, Number);
@@ -123,22 +124,23 @@ bool GetNextToken(Token *t)
             }
             else if (estado == LiteralPositivo) // ya leí 1
             {
-                    if (isdigit(c))
-                    {
-                        estado = LiteralPositivo;
-                        lexeme[contador] = c;
-                        contador++;
-                    }     
-                    else if (c == '.')
-                    {
-                        estado = LiteralPositivoFlotante;
-                        lexeme[contador] = c;
-                        contador++;
-                    }
-                    else // c = espaciador u operando
-                    {
+                if (isdigit(c))
+                {
+                    estado = LiteralPositivo;
+                    lexeme[contador] = c;
+                    contador++;
+                }
+                else if (c == '.')
+                {
+                    estado = LiteralPositivoFlotante;
+                    lexeme[contador] = c;
+                    contador++;
+                }
+                else // c = espaciador u operando
+                {
                     estado = LiteralPositivoFinal;
-                    }
+                    ungetc(c, stdin);
+                }
             }
             else if (estado == LiteralPositivoFlotante)
             {
@@ -152,9 +154,10 @@ bool GetNextToken(Token *t)
                 {
                     estado = Error;
                 }
-                else 
+                else
                 {
-                    estado = LiteralPositivoFinal;    
+                    estado = LiteralPositivoFinal;
+                    ungetc(c, stdin);
                 }
             }
             else if (estado == LiteralPositivoFinal)
@@ -202,16 +205,16 @@ bool GetNextToken(Token *t)
             estado = Error;
             printf("entre %c\n", c);
         }
-
     }
 
-if (estado == CaracterMenos) {
+    printf("Estado: %d\n", estado);
 
+    if (estado == CaracterMenos)
+    {
+        *t = createToken(0.0, Substraction);
+        return true;
+    }
 
-}
-
-
-printf("%d", estado);
     // Fin del stream
     *t = createToken(0.0, PopResult);
     return false;
@@ -226,6 +229,7 @@ Token createToken(double value, TokenType type)
     return token;
 }
 
-bool cumpleRestriccion (char c) {
-    return isdigit(c) || c == '+' || c == '-' || c == '/' || c == '*' || c == ' ' || c == '.';
+bool cumpleRestriccion(char c)
+{
+    return isdigit(c) || c == '+' || c == '-' || c == '/' || c == '*' || c == ' ' || c == '.' || c == '\n';
 }
