@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <errno.h>
 
 #include "Scanner.h"
 #include "StackOfDoublesModule.h"
@@ -37,7 +38,8 @@ int main()
             {
                 // Rompe el programa
                 printf("[Error]: Denominador cero\n");
-                return 1;
+                return ERANGE;
+
             }
             break;
         }
@@ -46,7 +48,8 @@ int main()
     if (token.type == LexError)
     {
         printf("[LexError] - Syntax Error: %s\n", token.lexeme);
-        return 1;
+        return EIO;
+
     }
 
     while (!IsEmpty())
