@@ -1,40 +1,44 @@
+// dot scanner.gv -Tpng -o scanner.png
 digraph G {
 
     graph  [bgcolor="white", fontname="Arial", fontsize=12]
 
-    node [shape = circle], witdth = 5;
+    node [shape = circle, witdth = 5];
     
     INICIO [label = "INICIO"];
-    INICIO_LITERAL_POSITIVO [label = "INICIO \nLITERAL \nPOSITIVO"];
-    INICIO_LITERAL_POSITIVO_FLOTANTE [label = "INICIO \nLITERAL \n POSITIVO\n FLOTANTE"];
     LITERAL_POSITIVO [label = "LITERAL \nPOSITIVO"];
-    CARACTER_MENOS [label = "CARACTER\n MENOS"];
-    INICIO_LITERAL_NEGATIVO [label = "INICIO \nLITERAL\n NEGATIVO"];
-    INICIO_LITERAL_NEGATIVO_FLOTANTE [label = "INICIO \nLITERAL \n NEGATIVO\n FLOTANTE"];
-    LITERAL_NEGATIVO [label = "LITERAL \nNEGATIVO"];
-    RESTAR [label = "RESTAR"];
+    LITERAL_POSITIVO_FLOTANTE [label = "LITERAL \n POSITIVO\n FLOTANTE"];
+    LITERAL_POSITIVO_FINAL [label = "LITERAL \nPOSITIVO\n FINAL"];
     DIVIDIR [label = "DIVIDIR"];
     SUMAR [label = "SUMAR"];
+    CARACTER_MENOS [label = "CARACTER\n MENOS"];
+    RESTAR [label = "RESTAR"];    
+    LITERAL_NEGATIVO [label = "LITERAL\n NEGATIVO"];
+    LITERAL_NEGATIVO_FLOTANTE [label = "LITERAL \n NEGATIVO\n FLOTANTE"];
+    LITERAL_NEGATIVO_FINAL [label = "LITERAL \nNEGATIVO\n FINAL"];
     MULTIPLICAR [label = "MULTIPLICAR"];
-    MOSTRAR_RESULTADO [label = "MOSTRAR \nRESULTADO"];
+    RESULTADO [label = "MOSTRAR \nRESULTADO"];
     ERROR [label = "ERROR"];
 
+
     INICIO -> INICIO [label = "espaciador"];
-    INICIO -> INICIO_LITERAL_POSITIVO [label = "dígito"];
-    INICIO_LITERAL_POSITIVO -> INICIO_LITERAL_POSITIVO [label = "dígito"];
-    INICIO_LITERAL_POSITIVO -> INICIO_LITERAL_POSITIVO_FLOTANTE [label = "."]; 
-    INICIO_LITERAL_POSITIVO_FLOTANTE -> INICIO_LITERAL_POSITIVO_FLOTANTE [label = "dígito"]; 
-    INICIO_LITERAL_POSITIVO_FLOTANTE -> LITERAL_POSITIVO [label = "espaciador u operando"]; 
-    INICIO_LITERAL_POSITIVO -> LITERAL_POSITIVO [label = "espaciador u operando"]; 
+    INICIO -> LITERAL_POSITIVO [label = "dígito"];
+    LITERAL_POSITIVO -> LITERAL_POSITIVO [label = "dígito"];
+    LITERAL_POSITIVO -> LITERAL_POSITIVO_FLOTANTE [label = "."]; 
+    LITERAL_POSITIVO_FLOTANTE -> LITERAL_POSITIVO_FLOTANTE [label = "dígito"]; 
+    LITERAL_POSITIVO_FLOTANTE -> LITERAL_POSITIVO_FINAL [label = "espaciador u operando"];
+    LITERAL_POSITIVO_FLOTANTE -> ERROR [label ="."]; 
+    LITERAL_POSITIVO -> LITERAL_POSITIVO_FINAL [label = "espaciador u operando"]; 
 
     INICIO -> CARACTER_MENOS [label ="-"];
     CARACTER_MENOS -> RESTAR [label ="espaciador u operando"];
-    CARACTER_MENOS -> INICIO_LITERAL_NEGATIVO [label ="dígito"];
-    INICIO_LITERAL_NEGATIVO -> INICIO_LITERAL_NEGATIVO [label ="dígito"];
-    INICIO_LITERAL_NEGATIVO -> LITERAL_NEGATIVO [label ="espaciador u operando"];
-    INICIO_LITERAL_NEGATIVO -> INICIO_LITERAL_NEGATIVO_FLOTANTE [label ="."];
-    INICIO_LITERAL_NEGATIVO_FLOTANTE -> INICIO_LITERAL_NEGATIVO_FLOTANTE [label ="dígito"];
-    INICIO_LITERAL_NEGATIVO_FLOTANTE -> LITERAL_NEGATIVO[label = "espaciador u operando"];
+    CARACTER_MENOS -> LITERAL_NEGATIVO [label ="dígito"];
+    LITERAL_NEGATIVO -> LITERAL_NEGATIVO [label ="dígito"];
+    LITERAL_NEGATIVO -> LITERAL_NEGATIVO_FINAL [label ="espaciador u operando"];
+    LITERAL_NEGATIVO -> LITERAL_NEGATIVO_FLOTANTE [label ="."];
+    LITERAL_NEGATIVO_FLOTANTE -> LITERAL_NEGATIVO_FLOTANTE [label ="dígito"];
+    LITERAL_NEGATIVO_FLOTANTE -> ERROR [label ="."];
+    LITERAL_NEGATIVO_FLOTANTE -> LITERAL_NEGATIVO_FINAL[label = "espaciador u operando"];
 
     INICIO -> DIVIDIR[label = "/"]
     
@@ -42,5 +46,8 @@ digraph G {
 
     INICIO -> MULTIPLICAR[label = "*"]
 
-    INICIO -> MOSTRAR_RESULTADO[label = "^Z"]
+    INICIO -> RESULTADO[label = "^Z"]
+
+    INICIO -> ERROR[label = "caracter no válido o . (punto)"]
+
 }

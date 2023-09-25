@@ -12,6 +12,7 @@ int main()
 
     while (GetNextToken(&token))
     {
+        // printf("Tipo de token: %i\n", token.type);
         switch (token.type)
         {
         case Number:
@@ -36,8 +37,9 @@ int main()
             else
             {
                 // Rompe el programa
-                printf("[Error]: divisor cero\n");
+                printf("[Error]: Denominador cero\n");
                 return ERANGE;
+
             }
             break;
         }
@@ -45,8 +47,9 @@ int main()
 
     if (token.type == LexError)
     {
-        printf("[LexError] - Valor %f\n", token.val);
-        return EIO; 
+        printf("[LexError] - Syntax Error: %s\n", token.lexeme);
+        return EIO;
+
     }
 
     while (!IsEmpty())
