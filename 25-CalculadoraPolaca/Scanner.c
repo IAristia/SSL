@@ -17,12 +17,16 @@ bool GetNextToken(Token *t)
 
     while ((c = getchar()) != EOF)
     {
-        printf("DENTRO DEL WHILE DE GETNEXTTOKEn");
-        if (!isdigit(c) && c != '+' && c != '-' && c != '/' && c != '*' && c != '.' && c != ' ')
-        {
-            estado == Error;
-        }
-        else if (estado == Inicio)
+
+        printf("VALOR DEL CHAR: %c\n", c);
+        printf("ESTADO AL RRANCAR EL WHILE %d \n", estado);
+
+        // if (!isdigit(c) || c != '+' || c != '-' || c != '/' || c != '*' || c != ' ')
+        // {
+        //     estado == Error;
+        // }
+        // else
+        if (estado == Inicio)
         {
             if (c == ' ' || c == '\n' || c == '\t')
             {
@@ -30,9 +34,18 @@ bool GetNextToken(Token *t)
             }
             else if (c == '-')
             {
-                estado = CaracterMenos;
-                lexeme[contador] = c;
-                contador++;
+                if ((c = getchar()) == EOF)
+                {
+                    estado = Inicio;
+                    *t = createToken(0.0, Substraction);
+                    return true;
+                }
+                else
+                {
+                    estado = CaracterMenos;
+                    lexeme[contador] = c;
+                    contador++;
+                }
             }
             else if (isdigit(c) || c == '.')
             {
@@ -42,19 +55,22 @@ bool GetNextToken(Token *t)
             }
             else if (c == '+')
             {
-                estado == Sumar;
+                estado = Sumar;
+                ungetc(c, stdin);
             }
             else if (c == '/')
             {
-                estado == Dividir;
+                estado = Dividir;
+                ungetc(c, stdin);
             }
             else if (c == '*')
             {
-                estado == Multiplicar;
+                estado = Multiplicar;
+                ungetc(c, stdin);
             }
             else // Si no es operando y no es operador
             {
-                estado == Error;
+                estado = Error;
             }
         }
         else if (estado == CaracterMenos)
@@ -63,7 +79,7 @@ bool GetNextToken(Token *t)
             {
                 estado = Inicio;
                 *t = createToken(0.0, Substraction);
-                // ungetc(c, stdin);
+                ungetc(c, stdin);
                 return true;
             }
             else
@@ -73,11 +89,9 @@ bool GetNextToken(Token *t)
         }
         else if (estado == LiteralNegativo)
         {
-            // -1.
             if (!isdigit(c) && c != '.')
             {
                 estado = LiteralNegativoFinal;
-                // ungetc(c, stdin);
                 // Ver si crear token aca
             }
             else if (c == '.')
@@ -97,7 +111,6 @@ bool GetNextToken(Token *t)
             if (!isdigit(c))
             {
                 estado = LiteralNegativoFinal;
-                // ungetc(c, stdin);
                 // Ver si crear token aca
             }
             else
@@ -109,7 +122,6 @@ bool GetNextToken(Token *t)
         else if (estado == LiteralNegativoFinal)
         {
             estado = Inicio;
-            ungetc(c, stdin);
             double numeroDouble = atof(lexeme);
             *t = createToken(numeroDouble, Number);
             return true;
@@ -118,8 +130,9 @@ bool GetNextToken(Token *t)
         {
             if (!isdigit(c) && c != '.')
             {
+                printf("INGRESE UN NO DIGITO\n");
                 estado = LiteralPositivoFinal;
-                // ungetc(c, stdin);
+                ungetc(c, stdin);
                 // Ver si crear token aca
             }
             else if (c == '.')
@@ -139,7 +152,6 @@ bool GetNextToken(Token *t)
             if (!isdigit(c))
             {
                 estado = LiteralPositivoFinal;
-                // ungetc(c, stdin);
                 // Ver si crear token aca
             }
             else
@@ -158,29 +170,38 @@ bool GetNextToken(Token *t)
         }
         else if (estado == Sumar)
         {
+            estado = Inicio;
+            ungetc(c, stdin);
             *t = createToken(0.0, Addition);
+
             return true;
         }
         else if (estado == Restar)
         {
+            estado = Inicio;
             *t = createToken(0.0, Substraction);
             return true;
         }
         else if (estado == Dividir)
         {
+            estado = Inicio;
             *t = createToken(0.0, Division);
             return true;
         }
         else if (estado == Multiplicar)
         {
+            estado = Inicio;
             *t = createToken(0.0, Multiplication);
             return true;
         }
         else if (estado == Error)
         {
+            estado = Inicio;
             *t = createToken(0.0, LexError);
             return false;
         }
+
+        printf("ESTADO: %i\n", estado);
     }
     // Fin del stream
     *t = createToken(0.0, PopResult);
