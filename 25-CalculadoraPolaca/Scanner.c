@@ -118,11 +118,15 @@ bool GetNextToken(Token *t)
                 break;
 
             case Sumar:
-            case Restar:
             case Dividir:
             case Multiplicar:
                 // ungetc(c, stdin);
-                *t = createToken(0.0, estado == Sumar ? Addition : (estado == Restar ? Substraction : (estado == Dividir ? Division : Multiplication)), "");
+                *t = createToken(0.0, estado == Sumar ? Addition : (estado == Dividir ? Division : Multiplication), "");
+                return true;
+
+            case Restar:
+                ungetc(c, stdin);
+                *t = createToken(0.0, Substraction, "");
                 return true;
 
             case Error:
