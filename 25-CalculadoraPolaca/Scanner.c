@@ -5,6 +5,24 @@
 #include <stdlib.h>
 #include <string.h>
 
+enum States
+{
+    Inicio,
+    Sumar,
+    Restar,
+    Dividir,
+    Multiplicar,
+    Resultado,
+    CaracterMenos,
+    LiteralPositivo,
+    LiteralPositivoFlotante,
+    LiteralPositivoFinal,
+    LiteralNegativo,
+    LiteralNegativoFlotante,
+    LiteralNegativoFinal,
+    Error
+};
+
 bool GetNextToken(Token *t)
 {
     int c = 0;
