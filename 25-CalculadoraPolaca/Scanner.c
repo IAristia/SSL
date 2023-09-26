@@ -14,12 +14,8 @@ enum States
     Multiplicar,
     Resultado,
     CaracterMenos,
-    LiteralPositivo,
-    LiteralPositivoFlotante,
-    LiteralPositivoFinal,
-    LiteralNegativo,
-    LiteralNegativoFlotante,
-    LiteralNegativoFinal,
+    ParteEntera,
+    ParteFlotante,
     Error
 };
 
@@ -37,185 +33,100 @@ bool GetNextToken(Token *t)
     {
         if (cumpleRestriccion(c))
         {
-            if (estado == Inicio)
+            switch (estado)
             {
+            case Inicio:
                 if (c == ' ' || c == '\n' || c == '\t')
                 {
                     estado = Inicio;
                 }
+                else if (c == '+' || c == '/' || c == '*')
+                {
+                    ungetc(c, stdin);
+                    estado = c == '+' ? Sumar : (c == '/' ? Dividir : Multiplicar);
+                }
                 else if (c == '-')
                 {
                     estado = CaracterMenos;
-                    lexeme[contador] = c;
-                    contador++;
+                    lexeme[contador++] = c;
                 }
                 else if (isdigit(c))
                 {
-                    estado = LiteralPositivo;
-                    lexeme[contador] = c;
-                    contador++;
+                    estado = ParteEntera;
+                    lexeme[contador++] = c;
                 }
                 else if (c == '.')
                 {
                     estado = Error;
                 }
-                else if (c == '+')
+                break;
+
+            case CaracterMenos:
+                if (isdigit(c))
                 {
-                    ungetc(c, stdin);
-                    estado = Sumar;
+                    estado = ParteEntera;
+                    lexeme[contador++] = c;
                 }
-                else if (c == '/')
-                {
-                    ungetc(c, stdin);
-                    estado = Dividir;
-                }
-                else if (c == '*')
-                {
-                    ungetc(c, stdin);
-                    estado = Multiplicar;
-                }
-            }
-            else if (estado == CaracterMenos) // ya leí - , ahora puedo leer un dígito, otro operadoru .
-            {
-                if (isdigit(c)) // leo un dígito
-                {
-                    estado = LiteralNegativo;
-                    lexeme[contador] = c;
-                    contador++;
-                }
-                else if (c == '.') // leo un .
+                else if (c == '.')
                 {
                     estado = Error;
                 }
-                else // leo un espaciador u operando
+                else
                 {
                     ungetc(c, stdin);
                     estado = Restar;
                 }
-            }
-            else if (estado == LiteralNegativo) // ya leí -1
-            {
-                if (isdigit(c))
-                {
-                    estado = LiteralNegativo;
-                    lexeme[contador] = c;
-                    contador++;
-                }
+                break;
 
-                else if (c == '.')
-                {
-                    estado = LiteralNegativoFlotante;
-                    lexeme[contador] = c;
-                    contador++;
-                }
-                else // c = espaciador u operando
-                {
-                    estado = LiteralNegativoFinal;
-                    ungetc(c, stdin);
-                }
-            }
-            else if (estado == LiteralNegativoFlotante)
-            {
+            case ParteEntera:
                 if (isdigit(c))
                 {
-                    estado = LiteralNegativoFlotante;
-                    lexeme[contador] = c;
-                    contador++;
+                    lexeme[contador++] = c;
                 }
                 else if (c == '.')
                 {
-                    estado = Error;
-                    lexeme[contador] = c;
-                    contador++;
-                }
-                else // c = espaciador u operando
-                {
-                    estado = LiteralNegativoFinal;
-                    ungetc(c, stdin);
-                }
-            }
-            else if (estado == LiteralNegativoFinal)
-            {
-                ungetc(c, stdin);
-                estado = Inicio;
-                double numeroDouble = atof(lexeme);
-                *t = createToken(numeroDouble, Number, "");
-                return true;
-            }
-            else if (estado == LiteralPositivo) // ya leí 1
-            {
-                if (isdigit(c))
-                {
-                    estado = LiteralPositivo;
-                    lexeme[contador] = c;
-                    contador++;
-                }
-                else if (c == '.')
-                {
-                    estado = LiteralPositivoFlotante;
-                    lexeme[contador] = c;
-                    contador++;
-                }
-                else // c = espaciador u operando
-                {
-                    estado = LiteralPositivoFinal;
-                    ungetc(c, stdin);
-                }
-            }
-            else if (estado == LiteralPositivoFlotante)
-            {
-                if (isdigit(c))
-                {
-                    estado = LiteralPositivoFlotante;
-                    lexeme[contador] = c;
-                    contador++;
-                }
-                else if (c == '.')
-                {
-                    estado = Error;
-                    lexeme[contador] = c;
-                    contador++;
+                    estado = ParteFlotante;
+                    lexeme[contador++] = c;
                 }
                 else
                 {
-                    estado = LiteralPositivoFinal;
                     ungetc(c, stdin);
+                    estado = Inicio;
+                    double numeroDouble = atof(lexeme);
+                    *t = createToken(numeroDouble, Number, "");
+                    return true;
                 }
-            }
-            else if (estado == LiteralPositivoFinal)
-            {
+                break;
+
+            case ParteFlotante:
+                if (isdigit(c))
+                {
+                    lexeme[contador++] = c;
+                }
+                else if (c == '.')
+                {
+                    estado = Error;
+                }
+                else
+                {
+                    ungetc(c, stdin);
+                    estado = Inicio;
+                    double numeroDouble = atof(lexeme);
+                    *t = createToken(numeroDouble, Number, "");
+                    return true;
+                }
+                break;
+
+            case Sumar:
+            case Restar:
+            case Dividir:
+            case Multiplicar:
+                printf("Estado: %i\n", estado);
                 ungetc(c, stdin);
-                estado = Inicio;
-                double numeroDouble = atof(lexeme);
-                *t = createToken(numeroDouble, Number, "");
+                *t = createToken(0.0, estado == Sumar ? Addition : (estado == Restar ? Substraction : (estado == Dividir ? Division : Multiplication)), "");
                 return true;
-            }
-            else if (estado == Sumar)
-            {
-                estado = Inicio;
-                *t = createToken(0.0, Addition, "");
-                return true;
-            }
-            else if (estado == Restar)
-            {
-                estado = Inicio;
-                *t = createToken(0.0, Substraction, "");
-                return true;
-            }
-            else if (estado == Dividir)
-            {
-                estado = Inicio;
-                *t = createToken(0.0, Division, "");
-                return true;
-            }
-            else if (estado == Multiplicar)
-            {
-                estado = Inicio;
-                *t = createToken(0.0, Multiplication, "");
-                return true;
-            }
-            else if (estado == Error)
-            {
+
+            case Error:
                 ungetc(c, stdin);
                 estado = Inicio;
                 *t = createToken(0.0, LexError, lexeme);
@@ -241,7 +152,6 @@ bool GetNextToken(Token *t)
         return false;
     }
 
-    // Fin del stream
     *t = createToken(0.0, PopResult, "");
     return false;
 }
