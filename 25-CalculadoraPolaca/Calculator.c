@@ -12,7 +12,6 @@ int main()
 
     while (GetNextToken(&token))
     {
-        printf("Token: %i\n", token.type);
         switch (token.type)
         {
         case Number:

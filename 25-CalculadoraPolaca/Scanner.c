@@ -121,7 +121,6 @@ bool GetNextToken(Token *t)
             case Restar:
             case Dividir:
             case Multiplicar:
-                printf("Estado: %i\n", estado);
                 // ungetc(c, stdin);
                 *t = createToken(0.0, estado == Sumar ? Addition : (estado == Restar ? Substraction : (estado == Dividir ? Division : Multiplication)), "");
                 return true;
@@ -136,8 +135,7 @@ bool GetNextToken(Token *t)
         else
         {
             estado = Error;
-            lexeme[contador] = c;
-            contador++;
+            lexeme[contador++] = c;
         }
     }
 
