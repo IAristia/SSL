@@ -57,6 +57,7 @@ bool GetNextToken(Token *t)
                 }
                 else if (c == '.')
                 {
+                    lexeme[contador] = c;
                     estado = Error;
                 }
                 break;
