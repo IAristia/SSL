@@ -122,7 +122,7 @@ bool GetNextToken(Token *t)
             case Dividir:
             case Multiplicar:
                 printf("Estado: %i\n", estado);
-                ungetc(c, stdin);
+                // ungetc(c, stdin);
                 *t = createToken(0.0, estado == Sumar ? Addition : (estado == Restar ? Substraction : (estado == Dividir ? Division : Multiplication)), "");
                 return true;
 
