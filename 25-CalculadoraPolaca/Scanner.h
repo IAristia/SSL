@@ -14,24 +14,6 @@ enum TokenType
     LexError
 };
 
-enum States
-{
-    Inicio,
-    Sumar,
-    Restar,
-    Dividir,
-    Multiplicar,
-    Resultado,
-    CaracterMenos,
-    LiteralPositivo,
-    LiteralPositivoFlotante,
-    LiteralPositivoFinal,
-    LiteralNegativo,
-    LiteralNegativoFlotante,
-    LiteralNegativoFinal,
-    Error
-};
-
 typedef enum TokenType TokenType;
 
 typedef double TokenValue;
