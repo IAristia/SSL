@@ -9,8 +9,7 @@ digraph G {
     PARTE_ENTERA [label = "PARTE \n ENTERA\n+"];
     DIVIDIR [label = "DIVIDIR\n+"];
     SUMAR [label = "SUMAR\n+"];
-    CARACTER_MENOS [label = "CARACTER\n MENOS\n+"];
-    RESTAR [label = "RESTAR\n+"];    
+    CARACTER_MENOS [label = "CARACTER\n MENOS\n+"]; 
     MULTIPLICAR [label = "MULTIPLICAR \n+"];
     RESULTADO [label = "MOSTRAR \n RESULTADO\n+"];
     ERROR [label = "ERROR\n+"];
@@ -28,7 +27,7 @@ digraph G {
 
 
     INICIO -> CARACTER_MENOS [label ="-"];
-    CARACTER_MENOS -> RESTAR [label ="espaciador u operando"];
+   
     CARACTER_MENOS ->PARTE_ENTERA [label ="dígito"];
 
     INICIO -> DIVIDIR[label = "/"]
