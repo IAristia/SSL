@@ -9,7 +9,6 @@ enum States
 {
     Inicio,
     Sumar,
-    Restar,
     Dividir,
     Multiplicar,
     Resultado,
@@ -70,12 +69,14 @@ bool GetNextToken(Token *t)
                 }
                 else if (c == '.')
                 {
+                    lexeme[contador] = c;
                     estado = Error;
                 }
                 else
                 {
-                    ungetc(c, stdin);
-                    estado = Restar;
+                ungetc(c, stdin);
+                *t = createToken(0.0, Substraction, "");
+                return true;
                 }
                 break;
 
@@ -106,6 +107,7 @@ bool GetNextToken(Token *t)
                 }
                 else if (c == '.')
                 {
+                    lexeme[contador] = c;
                     estado = Error;
                 }
                 else
@@ -123,11 +125,6 @@ bool GetNextToken(Token *t)
             case Multiplicar:
                 // ungetc(c, stdin);
                 *t = createToken(0.0, estado == Sumar ? Addition : (estado == Dividir ? Division : Multiplication), "");
-                return true;
-
-            case Restar:
-                ungetc(c, stdin);
-                *t = createToken(0.0, Substraction, "");
                 return true;
 
             case Error:
