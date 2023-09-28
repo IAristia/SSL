@@ -140,7 +140,7 @@ bool GetNextToken(Token *t)
             lexeme[contador++] = c;
         }
     }
-
+/*
     if (estado == CaracterMenos)
     {
         *t = createToken(0.0, Substraction, "");
@@ -151,7 +151,7 @@ bool GetNextToken(Token *t)
         *t = createToken(0.0, LexError, lexeme);
         return false;
     }
-
+*/
     *t = createToken(0.0, PopResult, "");
     return false;
 }
