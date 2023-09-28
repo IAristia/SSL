@@ -8,7 +8,7 @@
 
 M = (Q, Σ, q0, qf, T) donde:
 
-Q = {Inicio, Sumar, Restar, Dividir, Multiplicar, Resultado, CaracterMenos, LiteralPositivo, LiteralPositivoFlotante, LiteralPositivoFinal, LiteralNegativo, LiteralNegativoFlotante, LiteralNegativoFinal, Error}
+Q = {Inicio, Dividir, Sumar, Caracter Menos, Multiplicar, Resultado, Parte Entera, Restar, Parte Flotante, Error}
 
 Σ = ASCII, partición P = {{caracter válido}, {caracter no válido}}.
 
@@ -22,9 +22,9 @@ Q = {Inicio, Sumar, Restar, Dividir, Multiplicar, Resultado, CaracterMenos, Lite
 
   - Operador = {+, -, /, *}
 
-q0 = INICIO
+q0 = Inicio
 
-qf = {Sumar, Restar, Dividir, Multiplicar, Resultado, LiteralPositivoFinal, LiteralNegativoFinal, Error}
+qf = {Dividir, Sumar, Caracter Menos, Multiplicar, Resultado, Parte Entera, Parte Flotante, Error}
 
 T = {Inicio => espaciador => Inicio, 
 
@@ -32,43 +32,25 @@ Inicio => / => Dividir,
 
 Inicio => + => Sumar, 
 
-Inicio => * => Multiplicar, 
-
-Inicio => . => Error,  
-
-Inicio => ^Z => Resultado, 
-
-Inicio => Dígito => Literal Positivo, 
-
 Inicio => - => Caracter menos,
 
-Literal Positivo => Dígito => Literal Positivo, 
+Inicio => * => Multiplicar, 
 
-Literal Positivo => . => Literal Positivo Flotante,
+Inicio => \n => Resultado, 
 
-Literal Positivo => Espaciador u Operando => Litreal Positivo Final, 
+Inicio => Dígito => Parte Entera,
 
-Literal Positivo Flotante => Dígito => Literal Positivo Flotante,
+Caracter Menos => Dígito => Parte Entera,
 
-Literal Positivo Flotante => Espaciador u Operando => Litreal Positivo Final, 
+Parte Entera => Dígito => Parte Entera,
 
-Literal Positivo Flotante => . => Error, 
+Parte Entera => . => Parte Flotante,
 
-Caracter Menos => Espaciador u Operando => Restar, 
+Parte Flotante => Dígito => Parte Flotante,
 
-Caracter Menos => Dígito => Literal Negativo,
+Parte Flotante => . => Error,
 
-Literal Negativo => Dígito => Literal Negativo,
-
-Literal Negativo => Espaciador u Operando => Literal Negativo Final, 
-
-Literal Negativo => . => Literal Negativo Flotante,
-
-Literal Negativo Flotante => Dígito => Literal Negativo Flotante,
-
-Literal Negativo Flotante => . => Error, 
-
-Literal Negativo Flotante => Espaciador u Operando => Literal Negativo Flotante}
+Inicio => caracter no válido o . => Error}
 
 3. Escribir un archivo expresiones.txt para probar la calculadora.
 
