@@ -35,7 +35,7 @@ bool GetNextToken(Token *t)
             switch (estado)
             {
             case Inicio:
-                if (c == ' ' || c == '\n' || c == '\t')
+                if (c == ' ' || c == '\t')
                 {
                     estado = Inicio;
                 }
@@ -59,6 +59,11 @@ bool GetNextToken(Token *t)
                     lexeme[contador] = c;
                     estado = Error;
                 }
+                else if (c == '\n')
+                {
+                    *t = createToken(0.0, PopResult, "");
+                    return true;
+                }
                 break;
 
             case CaracterMenos:
@@ -74,9 +79,9 @@ bool GetNextToken(Token *t)
                 }
                 else
                 {
-                ungetc(c, stdin);
-                *t = createToken(0.0, Substraction, "");
-                return true;
+                    ungetc(c, stdin);
+                    *t = createToken(0.0, Substraction, "");
+                    return true;
                 }
                 break;
 
