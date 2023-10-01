@@ -88,15 +88,18 @@ int main()
         return EIO;
     }
 
-    if (countNumber > countOperador + 1)
+    if (countNumber != 0 && countOperador != 0)
     {
-        printf("[LexError] - Faltan operadores\n");
-        return EIO;
-    }
-    if (countNumber < countOperador + 1)
-    {
-        printf("[LexError] - Faltan operandos\n");
-        return EIO;
+        if (countNumber > countOperador + 1)
+        {
+            printf("[LexError] - Faltan operadores\n");
+            return EIO;
+        }
+        if (countNumber < countOperador + 1)
+        {
+            printf("[LexError] - Faltan operandos\n");
+            return EIO;
+        }
     }
 
     while (!IsEmpty())

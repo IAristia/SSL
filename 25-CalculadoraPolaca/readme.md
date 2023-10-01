@@ -86,3 +86,15 @@ Algunas opciones:
   - Cambiar el tipo de val para que sea un union que pueda representar el valor para Number y valor LexError.
 
 - ii. Implemente la solución según su decisión.
+
+## Sintaxis de la notación polaca inversa (BNF)
+
+`<Dígito> ::= 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9`
+
+`<ConjuntoDeDígitos> ::= <Dígito> | <Dígito> <ConjuntoDeDígitos>`
+
+`<Número> ::= <ConjuntoDeDígitos> | <ConjuntoDeDígitos> "." | <ConjuntoDeDígitos> "." <ConjuntoDeDígitos> | "-" <Número> `
+
+`<Operador> ::= + | - | * | /`
+
+`Expresión ::= <Numero> | <Expresión> <Expresión> <Operador>`
