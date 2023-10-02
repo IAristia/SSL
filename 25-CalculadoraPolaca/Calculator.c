@@ -5,20 +5,6 @@
 #include "Scanner.h"
 #include "StackOfDoublesModule.h"
 
-int compare_count(int countNumber, int countOperador)
-{
-    if (countNumber > countOperador + 1)
-    {
-        printf("[LexError] - Faltan operadores\n");
-        return EIO;
-    }
-    if (countNumber < countOperador + 1)
-    {
-        printf("[LexError] - Faltan operandos\n");
-        return EIO;
-    }
-}
-
 int main()
 {
     Token token;

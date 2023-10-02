@@ -97,14 +97,18 @@ Algunas opciones:
 
 `<Operador> ::= + | - | * | /`
 
-`Expresión ::= <Expresión1> | <Expresión2> | <Expresión> <Expresión> | <Expresión> <Auxiliar>`
+`Expresión ::= <Número> | <Expresión> <Expresión> <Operador>`
 
-`Expresión1 ::= <Número> | <Número> <Número> <Operador>`
+<!--
+Prueba del BNF con expresión compleja
 
-`Expresión2 ::= <Expresión1> <Número> <Operador>`
+10 2 3 + 7 - 2 9 + + + 
 
-`Auxiliar ::= <Número> <Operador> | <Número> <Auxiliar> | Operador`
-
-<!-- 10 2 - 4 + -->
-
-<!-- 10 2 3 + 7 - 2 9 + + + -->
+expresion
+expresion expresion                                                                    operador          // ABRO 2DO EXPRSION
+expresion expresion                                       expresion                    operador operador // ABRO 2DO EXPRSION
+expresion expresion                    expresion operador expresion                    operador operador // ABRO 2DO EXPRESION
+expresion expresion expresion operador expresion operador expresion                    operador operador // ABRO 5TO EXPRESION
+expresion expresion expresion operador expresion operador expresion expresion operador operador operador // FIN
+10            2         3         +       7        -          2         9         +       +         + 
+ -->
