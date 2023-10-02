@@ -97,6 +97,14 @@ Algunas opciones:
 
 `<Operador> ::= + | - | * | /`
 
-`Expresión ::= <Numero> | <Expresión> <Expresión> <Operador>`
+`Expresión ::= <Expresión1> | <Expresión2> | <Expresión> <Expresión> | <Expresión> <Auxiliar>`
+
+`Expresión1 ::= <Número> | <Número> <Número> <Operador>`
+
+`Expresión2 ::= <Expresión1> <Número> <Operador>`
+
+`Auxiliar ::= <Número> <Operador> | <Número> <Auxiliar> | Operador`
+
+<!-- 10 2 - 4 + -->
 
 <!-- 10 2 3 + 7 - 2 9 + + + -->
