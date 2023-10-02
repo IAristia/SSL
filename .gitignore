@@ -8,3 +8,5 @@
 .obj
 **/test
 **/histograma
+**/calculadora/*.out
+*.out
