@@ -61,16 +61,26 @@ int main()
                     printf("[SyntaxError] - Faltan operandos\n");
                     return EIO;
                 }
-                countNumber = 0;
-                countOperador = 0;
             }
+            else if (countNumber == 0 && countOperador > 0)
+            {
+                    printf("[SyntaxError] - Faltan operandos\n");
+                    return EIO;
+            }
+            else if (countNumber > 1 && countOperador == 0)
+            {
+                    printf("[SyntaxError] - Faltan operadores\n");
+                    return EIO;
+            }
+            countNumber = 0;
+            countOperador = 0;
             break;
         }
     }
 
     if (token.type == LexError)
     {
-        printf("[LexError] - Syntax Error: %s\n", token.lexeme);
+        printf("[LexError] - Caracter inválido: %s\n", token.lexeme);
         return EIO;
     }
 
