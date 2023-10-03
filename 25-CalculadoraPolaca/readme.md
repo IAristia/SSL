@@ -87,17 +87,21 @@ Algunas opciones:
 
 - ii. Implemente la solución según su decisión.
 
-## Sintaxis de la notación polaca inversa (BNF)
+## BNF de la notación polaca inversa
 
 `<Dígito> ::= 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9`
 
 `<ConjuntoDeDígitos> ::= <Dígito> | <Dígito> <ConjuntoDeDígitos>`
 
-`<Número> ::= <ConjuntoDeDígitos> | <ConjuntoDeDígitos> "." | <ConjuntoDeDígitos> "." <ConjuntoDeDígitos> | "-" <Número> `
+`<AuxiliarPunto>::= .`
 
-`<Operador> ::= + | - | * | /`
+`<AuxiliarMenos>:: = -`
 
-`Expresión ::= <Número> | <Expresión> <Expresión> <Operador>`
+`<Número> ::= <ConjuntoDeDígitos> | <ConjuntoDeDígitos> "." | <ConjuntoDeDígitos> <AuxiliarPunto> <ConjuntoDeDígitos> | <AuxiliarMenos> <Número>`
+
+`<Operador> ::= + | - | * | / | '\n'`
+
+`<Expresión> ::= <Número> | <Expresión> <Expresión> <Operador>`
 
 <!--
 Prueba del BNF con expresión compleja
