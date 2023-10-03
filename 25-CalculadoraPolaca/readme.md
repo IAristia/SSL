@@ -97,7 +97,7 @@ Algunas opciones:
 
 `<AuxiliarMenos>:: = -`
 
-`<Número> ::= <ConjuntoDeDígitos> | <ConjuntoDeDígitos> "." | <ConjuntoDeDígitos> <AuxiliarPunto> <ConjuntoDeDígitos> | <AuxiliarMenos> <Número>`
+`<Número> ::= <ConjuntoDeDígitos> | <ConjuntoDeDígitos> <AuxiliarPunto> | <ConjuntoDeDígitos> <AuxiliarPunto> <ConjuntoDeDígitos> | <AuxiliarMenos> <Número>`
 
 `<Operador> ::= + | - | * | / | '\n'`
 
