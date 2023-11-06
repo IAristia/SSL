@@ -1,24 +1,11 @@
-# Globales
-CC = gcc
-OUTFILE = calculadora.out
+calculadora : Calculator.o Scanner.o StackOfDoublesModule.o
+	gcc Calculator.o Scanner.o StackOfDoublesModule.o -o calculadora.exe
 
-### Reglas ###
-SRC = $(shell find . -type f -iname "*.c" -exec basename {} \;)
-OBJ = $(SRC:%.c=./obj/%.o)
+Calculator.o : Calculator.c
+	gcc -c Calculator.c
 
+Scanner.o : Scanner.c Scanner.h
+	gcc -c Scanner.c
 
-build: makefolder $(OBJ)
-	$(CC) -o $(OUTFILE) $(OBJ)
-
-CFLAGS = -c
-
-./obj/%.o: ./%.c
-	$(CC) $(CFLAGS) $< -o $@
-
-makefolder:
-	if [ ! -d ./obj ]; then mkdir obj; fi
-
-# Clean
-clean:
-	rm -rf obj
-	rm -rf *.out
+StackOfDoublesModule.o : StackOfDoublesModule.c StackOfDoublesModule.h
+	gcc -c StackOfDoublesModule.c
