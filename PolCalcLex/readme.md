@@ -19,14 +19,23 @@ Aplicar lex para el análisis lexicográfico.
 • Sufijo del nombre de la carpeta: PolCalLex.
 
 • /expresiones.txt
+
 • /Dependencias.gv
+
 • /Calculator.c
+
 • /StackOfDoublesModule.h
+
 • /StackOfDoublesModule.c
+
 • /Scanner.gv
+
 • /Scanner.h
+
 • /Scanner.c
+
 • /Scanner.l
+
 • /Makefile
 
 
