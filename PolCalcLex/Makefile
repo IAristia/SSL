@@ -4,8 +4,8 @@ calculadora : Calculator.o Scanner.o StackOfDoublesModule.o
 Calculator.o : Calculator.c
 	gcc -c Calculator.c
 
-Scanner.o : Scanner.c Scanner.h
-	gcc -c Scanner.c
+Scanner.o : Scanner.c Scanner.h Scanner.l
+	gcc -c Scanner.c Scanner.l
 
 StackOfDoublesModule.o : StackOfDoublesModule.c StackOfDoublesModule.h
 	gcc -c StackOfDoublesModule.c
