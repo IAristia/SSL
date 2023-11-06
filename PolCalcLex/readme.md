@@ -18,7 +18,17 @@ Aplicar lex para el análisis lexicográfico.
 
 • Sufijo del nombre de la carpeta: PolCalLex.
 
-• Los mismos que Capítulo 25, Calculadora Polaca — Léxico con la adición de /Scanner.l
+• /expresiones.txt
+• /Dependencias.gv
+• /Calculator.c
+• /StackOfDoublesModule.h
+• /StackOfDoublesModule.c
+• /Scanner.gv
+• /Scanner.h
+• /Scanner.c
+• /Scanner.l
+• /Makefile
+
 
 
 # 28 - Calculadora Infija con Yacc/Bison
