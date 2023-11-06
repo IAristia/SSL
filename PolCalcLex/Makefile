@@ -9,3 +9,7 @@ Scanner.o : Scanner.c Scanner.h
 
 StackOfDoublesModule.o : StackOfDoublesModule.c StackOfDoublesModule.h
 	gcc -c StackOfDoublesModule.c
+
+clean:
+	rm -rf *.o
+	rm -rf *.exe
