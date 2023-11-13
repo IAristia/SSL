@@ -11,6 +11,8 @@ enum TokenType
     Substraction = '-',
     Division = '/',
     PopResult = '\n',
+    WhiteSpace = ' ',
+    TokenEoF,
     LexError
 };
 

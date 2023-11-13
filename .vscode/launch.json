@@ -1,0 +1,31 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "PolCalcLex",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/PolCalcLex/calculadora.out",
+			"preLaunchTask": "Make PolCalcLex",
+			"cwd": "${workspaceFolder}/PolCalcLex",
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"args": [
+				"<",
+				"${workspaceFolder}/PolCalcLex/expresion.txt"
+			],
+			"setupCommands": [
+				{
+					"description": "Habilitar la impresión con sangría para gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				},
+				{
+					"description": "Establecer tipo de desensamblado en Intel",
+					"text": "-gdb-set disassembly-flavor intel",
+					"ignoreFailures": true
+				}
+			]
+		}
+	]
+}

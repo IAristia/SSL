@@ -1,5 +1,5 @@
 *.exe
-.vscode/
+.vscode/settings.json
 *.o
 *.obj
 *.pdb
@@ -10,3 +10,4 @@
 **/histograma
 **/calculadora/*.out
 *.out
+PolCalcLex/Scanner.c
