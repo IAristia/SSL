@@ -11,3 +11,6 @@
 **/calculadora/*.out
 *.out
 PolCalcLex/Scanner.c
+PolCalcLexBison/lex.yy.c
+PolCalcLexBison/parser.tab.c
+PolCalcLexBison/parser.tab.h

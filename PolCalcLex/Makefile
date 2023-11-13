@@ -1,24 +1,22 @@
-# Globales
 CC = gcc
 OUTFILE = calculadora.out
+CFLAGS = -c
 
-### Reglas ###
 SRC = $(shell find . -type f -iname "*.c" -exec basename {} \;)
 OBJ = $(SRC:%.c=./obj/%.o)
 
-
-build: makefolder $(OBJ)
+build: pretasks $(OBJ)
 	$(CC) -o $(OUTFILE) $(OBJ)
 
-CFLAGS = -c
+.PHONY: build pretasks clean
 
 ./obj/%.o: ./%.c
 	$(CC) $(CFLAGS) $< -o $@
 
-makefolder:
+pretasks:
 	lex -o Scanner.c Scanner.l && if [ ! -d ./obj ]; then mkdir obj; fi
 
-# Clean
 clean:
 	rm -rf obj
 	rm -rf *.out
+	rm -f Scanner.c

@@ -37,9 +37,3 @@ Aplicar lex para el análisis lexicográfico.
 • /Scanner.l
 
 • /Makefile
-
-
-
-# 28 - Calculadora Infija con Yacc/Bison
-
-Esta vez, el parser lo construye Yacc por nosotros.
