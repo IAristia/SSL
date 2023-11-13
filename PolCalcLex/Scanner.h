@@ -12,7 +12,7 @@ enum TokenType
     Division = '/',
     PopResult = '\n',
     WhiteSpace = ' ',
-    TokenEoF,
+    NoMoreTokens,
     LexError
 };
 

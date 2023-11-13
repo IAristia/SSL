@@ -7,7 +7,7 @@
 #include <string.h>
 
 #undef YY_NULL
-#define YY_NULL createToken(0.0, TokenEoF, "")
+#define YY_NULL createToken(0.0, NoMoreTokens, "")
 #define YY_DECL Token yylex(void)
 
 Token createToken(double value, enum TokenType type, char lexemeError[])
@@ -23,18 +23,17 @@ Token createToken(double value, enum TokenType type, char lexemeError[])
 
 %%
 
-[ \t]   { return createToken(0.0, WhiteSpace, ""); }
+[ \t]+   return createToken(0.0, WhiteSpace, "");
 
-"+"     { return createToken(0.0, Addition, ""); }
-"/"     { return createToken(0.0, Division, ""); }
-"*"     { return createToken(0.0, Multiplication, ""); }
+"+"     return createToken(0.0, Addition, "");
+"/"     return createToken(0.0, Division, "");
+"*"     return createToken(0.0, Multiplication, "");
+"-"     return createToken(0.0, Substraction, "");
 
-"-"     { return createToken(0.0, Substraction, ""); }
+-?[0-9]+(\.[0-9]+)?  return createToken(atof(yytext), Number, "");
 
--?[0-9]+(\.[0-9]+)?  { return createToken(atof(yytext), Number, ""); }
-
-\n      { return createToken(0.0, PopResult, ""); }
-.       { return createToken(0.0, LexError, yytext); }
+\n      return createToken(0.0, PopResult, "");
+.       return createToken(0.0, LexError, yytext);
 
 %%
 
@@ -43,5 +42,5 @@ bool GetNextToken(Token *t)
     do {
         *t = yylex(); 
     } while (t->type == WhiteSpace);
-    return t->type != LexError && t->type != TokenEoF;
+    return t->type != LexError && t->type != NoMoreTokens;
 }
