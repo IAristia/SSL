@@ -1,0 +1,15 @@
+digraph G {
+
+    graph  [bgcolor="white", fontname="Arial", fontsize=12]
+
+    node [shape = circle];
+    
+    I [label = "IN"];
+    O [label = "OUT"];
+    
+    O -> I [label = "no espaciador \n ncw=0"];
+    I -> I [label = "no espaciador \n ++ncw"];
+    O -> O [label = "espaciador"];
+    I -> O [label = "espaciador \n arrayLengths[ncw > MAX_WORD_LENGTH ? MAX_WORD_LENGTH : ncw-1]++"];
+
+}

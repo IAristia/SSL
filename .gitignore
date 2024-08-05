@@ -1,0 +1,16 @@
+*.exe
+.vscode/settings.json
+*.o
+*.obj
+*.pdb
+*.ini
+*.suo
+.obj
+**/test
+**/histograma
+**/calculadora/*.out
+*.out
+PolCalcLex/Scanner.c
+PolCalcLexBison/lex.yy.c
+PolCalcLexBison/parser.tab.c
+PolCalcLexBison/parser.tab.h

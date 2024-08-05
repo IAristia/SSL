@@ -1,0 +1,44 @@
+// dot dependencias.gv -Tpng -o dependencias.png
+
+digraph G {
+
+    graph  [bgcolor="white", fontname="Arial", fontsize=12]
+
+    node [shape = circle, witdth = 5];
+    
+    Calculator_c [label = "Calculator.c"];
+
+    Calculator_o [label = "Calculator.o"];
+
+    Calculator_exe [label = "Calculator.exe"];
+
+    Calculator_o -> Calculator_c;
+
+    Calculator_exe -> Calculator_o;
+
+    Scanner_c [label = "Scanner.c"]
+
+    Scanner_o [label = "Scanner.o"]
+
+    Scanner_h [label = "Scanner.h"]
+
+    Scanner_o -> Scanner_c;
+
+    Scanner_o -> Scanner_h;
+
+    Calculator_exe -> Scanner_o;
+
+    Stack_c [label = "StackOf\nDoubles.c"]
+
+    Stack_o [label = "Stack\nDoubles.o"]
+
+    Stack_h [label = "Stack\nDoubles.h"]   
+
+    Stack_o -> Stack_c;
+
+    Stack_o -> Stack_h;
+
+    Calculator_exe -> Stack_o;    
+
+    
+    }

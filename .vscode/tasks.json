@@ -1,0 +1,16 @@
+{
+    "tasks": [
+        {
+            "label": "Make PolCalcLex",
+            "type": "shell",
+            "command": "make",
+            "options": {
+                "cwd": "${workspaceFolder}/PolCalcLex"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+    ],
+    "version": "2.0.0"
+}
